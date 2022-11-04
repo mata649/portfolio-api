@@ -1,4 +1,4 @@
-import { CreateUserDto, LoginUserDto, UserValue } from '../entities/';
+import { CreateUserDto, LoginUserDto, UserValue } from '../entities/user';
 
 import { UserRepository } from '../repositories/user.repository';
 import { ResponseFailure, ResponseSuccess, ResponseTypes } from '../response';

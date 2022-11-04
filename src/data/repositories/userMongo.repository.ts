@@ -1,4 +1,4 @@
-import { UserEntity } from '../../domain/entities';
+import { UserEntity } from '../../domain/entities/user';
 import { UserRepository } from '../../domain/repositories/user.repository';
 import { UserModel } from '../models';
 
