@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { CreateUserDto, LoginUserDto, UserEntity } from '../../domain/entities/user';
 import { ResponseTypes } from '../../domain/response';
-import { UserUseCase } from '../../domain/useCases/user.usecases';
+import { UserUseCase } from '../../domain/useCases';
 import { generateJWT } from '../auth/jwt';
 
 export class UserController {

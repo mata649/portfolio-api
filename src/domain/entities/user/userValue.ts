@@ -1,4 +1,4 @@
-import { UserEntity } from './user.entity';
+import { UserEntity } from './userEntity';
 
 interface UserValueParams extends Partial<UserEntity> {}
 

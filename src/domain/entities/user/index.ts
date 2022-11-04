@@ -1,3 +1,3 @@
-export * from './user.dto'
-export * from './user.entity'
-export * from './user.value'
+export * from './userDto'
+export * from './userEntity'
+export * from './userValue'

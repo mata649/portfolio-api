@@ -1,5 +1,5 @@
 import { UserEntity } from '../../domain/entities/user';
-import { UserRepository } from '../../domain/repositories/user.repository';
+import { UserRepository } from '../../domain/repositories/user';
 import { UserModel } from '../models';
 
 export class UserMongoRepository implements UserRepository {

@@ -1,6 +1,6 @@
 import { CreateUserDto, LoginUserDto, UserValue } from '../entities/user';
 
-import { UserRepository } from '../repositories/user.repository';
+import { UserRepository } from '../repositories/user';
 import { ResponseFailure, ResponseSuccess, ResponseTypes } from '../response';
 import bcrypt from 'bcryptjs';
 
