@@ -19,16 +19,16 @@ export class UserUseCase {
 	/**
 	 * Creates an User in the repository and returns a response
 	 * depending if the transaction could be made successfuly or not
-	 * @param {CreateUserDto} createUserDto - Object with the information to create the user
+	 * @param {CreateUserDto} userDto - Object with the information to create the user
 	 * @returns {Promise<ResponseSuccess | ResponseFailure>} - Response with the information of the transaction
 	 */
 	async create(
-		createUserDto: CreateUserDto
+		userDto: CreateUserDto
 	): Promise<ResponseSuccess | ResponseFailure> {
 		try {
-			const user = new UserValue(createUserDto);
+			const user = new UserValue(userDto);
 
-			if (await this.userRepository.getUserByEmail(user.email)) {
+			if (await this.userRepository.getByEmail(user.email)) {
 				return new ResponseFailure(
 					ResponseTypes.RESOURCE_ERROR,
 					'email already registered'
@@ -36,7 +36,7 @@ export class UserUseCase {
 			}
 			user.password = this.hashPassword(user.password);
 
-			const userCreated = await this.userRepository.createUser(user);
+			const userCreated = await this.userRepository.create(user);
 
 			return new ResponseSuccess(ResponseTypes.CREATED, {
 				email: userCreated.email,
@@ -53,17 +53,15 @@ export class UserUseCase {
 	/**
 	 * Authenticates an User in the repository and returns a response
 	 * depending if the transaction could be made successfuly or not
-	 * @param {LoginUserDto} loginUserDto- Object with information to authenticate the user in the repository
+	 * @param {LoginUserDto} userDto - Object with information to authenticate the user in the repository
 	 * @returns {Promise<ResponseSuccess | ResponseFailure>} - Response with the information of the transaction
 	 */
 	async login(
-		loginUserDto: LoginUserDto
+		userDto: LoginUserDto
 	): Promise<ResponseSuccess | ResponseFailure> {
 		try {
-			const user = new UserValue({ ...loginUserDto });
-			const userFound = await this.userRepository.getUserByEmail(
-				user.email
-			);
+			const user = new UserValue({ ...userDto });
+			const userFound = await this.userRepository.getByEmail(user.email);
 			if (!userFound) {
 				return new ResponseFailure(
 					ResponseTypes.INVALID_CREDENTIALS,

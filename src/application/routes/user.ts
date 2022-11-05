@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
-import { UserMongoRepository } from '../../data/repositories';
+import { UserMongoRepository } from '../../data/repositories/mongo';
 import { UserUseCase } from '../../domain/useCases';
 import { UserController } from '../controllers';
 import { fieldValidator } from '../middlewares/fieldValidator';
 
 const router = Router();
+
 const userRepository = new UserMongoRepository();
 const userUseCase = new UserUseCase(userRepository);
 const userCtrl = new UserController(userUseCase);
