@@ -1,6 +1,6 @@
 import express from 'express';
 import { Config } from '../config';
-import { dbConnection } from '../data/db/mongoInit';
+import { dbConnection } from '../data/mongo/db/mongoInit';
 import { userRouter } from './routes';
 
 dbConnection();

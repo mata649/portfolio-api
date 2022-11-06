@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
-import { UserMongoRepository } from '../../data/repositories/mongo';
+import { UserMongoRepository } from '../../data/mongo/repositories';
 import { UserUseCase } from '../../domain/useCases';
 import { UserController } from '../controllers';
 import { fieldValidator } from '../middlewares/fieldValidator';
