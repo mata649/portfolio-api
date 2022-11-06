@@ -5,3 +5,16 @@ export interface UserEntity {
 	password: string;
 }
 
+export const createUserEntity = ({
+	id,
+	name,
+	email,
+	password,
+}: Partial<UserEntity>): UserEntity => {
+	return {
+		id: id ?? '',
+		name: name ?? '',
+		email: email ?? '',
+		password: password ?? '',
+	};
+};
