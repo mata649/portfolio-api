@@ -1,4 +1,8 @@
-import { CreateUserDto, LoginUserDto, UserValue } from '../entities/user';
+import {
+	CreateUserDto,
+	LoginUserDto,
+	createUserEntity,
+} from '../entities/user';
 
 import { UserRepository } from '../repositories/user';
 import { ResponseFailure, ResponseSuccess, ResponseTypes } from '../response';
@@ -26,7 +30,7 @@ export class UserUseCase {
 		userDto: CreateUserDto
 	): Promise<ResponseSuccess | ResponseFailure> {
 		try {
-			const user = new UserValue(userDto);
+			const user = createUserEntity(userDto);
 
 			if (await this.userRepository.getByEmail(user.email)) {
 				return new ResponseFailure(
@@ -60,7 +64,7 @@ export class UserUseCase {
 		userDto: LoginUserDto
 	): Promise<ResponseSuccess | ResponseFailure> {
 		try {
-			const user = new UserValue({ ...userDto });
+			const user = createUserEntity({ ...userDto });
 			const userFound = await this.userRepository.getByEmail(user.email);
 			if (!userFound) {
 				return new ResponseFailure(
