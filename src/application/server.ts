@@ -1,7 +1,7 @@
 import express from 'express';
-import { Config } from '../config';
-import { dbConnection } from '../data/mongodb/db/mongoInit';
-import { userRouter } from './routes';
+import { Config } from 'config';
+import { dbConnection } from 'data/mongodb/db/mongoInit';
+import { userRouter } from 'application/routes';
 
 dbConnection();
 

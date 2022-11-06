@@ -1,7 +1,8 @@
-import { createUserEntity, UserEntity } from '../../../domain/entities/user';
-import { UserRepository } from '../../../domain/repositories/user';
-import { UserModel } from '../models';
+import { createUserEntity, UserEntity } from 'domain/entities/user';
+import { UserRepository } from 'domain/repositories/user';
+import { UserModel } from 'data/mongodb/models';
 import { Document } from 'mongoose';
+
 export class UserMongoRepository implements UserRepository {
 	private userModel = UserModel;
 
