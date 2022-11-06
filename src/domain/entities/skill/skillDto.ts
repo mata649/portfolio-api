@@ -1,6 +1,6 @@
-import { Skill } from './skillEntity';
+import { SkillEntity } from './skillEntity';
 
-export interface CreateSkillDto extends Omit<Skill, 'id'> {}
+export interface CreateSkillDto extends Omit<SkillEntity, 'id'> {}
 
-export interface UpdateSkillDto extends Skill{}
+export interface UpdateSkillDto extends SkillEntity{}
 
