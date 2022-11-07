@@ -21,8 +21,27 @@ router.post(
 	skillCtrl.create
 );
 router.get('/', skillCtrl.get);
-router.get('/:id', skillCtrl.getById);
-router.delete('/:id', validateToken, skillCtrl.delete);
-router.put('/:id', validateToken, skillCtrl.update);
+router.get(
+	'/:id',
+	check('id').isMongoId().withMessage('id param is not a valid id'),
+	fieldValidator,
+	skillCtrl.getById
+);
+router.delete(
+	'/:id',
+	check('id').isMongoId().withMessage('id param is not a valid id'),
+	fieldValidator,
+	validateToken,
+	skillCtrl.delete
+);
+router.put(
+	'/:id',
+	check('id').isMongoId().withMessage('id param is not a valid id'),
+	check('name').notEmpty().withMessage('name is required'),
+	check('color').notEmpty().withMessage('color is required'),
+	fieldValidator,
+	validateToken,
+	skillCtrl.update
+);
 
 export { router as skillRouter };

@@ -21,8 +21,27 @@ router.post(
 	categoryCrl.create
 );
 router.get('/', categoryCrl.get);
-router.get('/:id', categoryCrl.getById);
-router.delete('/:id', validateToken, categoryCrl.delete);
-router.put('/:id', validateToken, categoryCrl.update);
+router.get(
+	'/:id',
+	check('id').isMongoId().withMessage('id param is not a valid id'),
+	fieldValidator,
+	categoryCrl.getById
+);
+router.delete(
+	'/:id',
+	check('id').isMongoId().withMessage('id param is not a valid id'),
+	fieldValidator,
+	validateToken,
+	categoryCrl.delete
+);
+router.put(
+	'/:id',
+	check('id').isMongoId().withMessage('id param is not a valid id'),
+	check('name').notEmpty().withMessage('name is required'),
+	check('color').notEmpty().withMessage('color is required'),
+	fieldValidator,
+	validateToken,
+	categoryCrl.update
+);
 
 export { router as categoryRouter };
