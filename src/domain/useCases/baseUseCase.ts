@@ -8,18 +8,14 @@ import {
 export class BaseUseCase<T extends { id?: string }> {
 	constructor(
 		private readonly baseRepository: BaseRepository<T>,
-		private createEntity: (item: Partial<T>) => T,
 		private itemName: string
 	) {}
 
-	async create(
-		itemDto: Partial<T>
-	): Promise<ResponseSuccess | ResponseFailure> {
+	async create(item: T): Promise<ResponseSuccess | ResponseFailure> {
 		try {
-			const skill = this.createEntity({ ...itemDto });
-			const skillCreate = await this.baseRepository.create(skill);
+			const itemCreated = await this.baseRepository.create(item);
 
-			return new ResponseSuccess(ResponseTypes.CREATED, skillCreate);
+			return new ResponseSuccess(ResponseTypes.CREATED, itemCreated);
 		} catch (error) {
 			return new ResponseFailure(
 				ResponseTypes.SYSTEM_ERROR,
@@ -47,7 +43,7 @@ export class BaseUseCase<T extends { id?: string }> {
 			}
 			return new ResponseFailure(
 				ResponseTypes.RESOURCE_ERROR,
-				`${this.itemName} does not exists`
+				`${this.itemName} does not exiss`
 			);
 		} catch (error) {
 			return new ResponseFailure(
@@ -56,17 +52,13 @@ export class BaseUseCase<T extends { id?: string }> {
 			);
 		}
 	}
-	async update(
-		skillDto: Partial<T>
-	): Promise<ResponseSuccess | ResponseFailure> {
+	async update(item: T): Promise<ResponseSuccess | ResponseFailure> {
 		try {
-			const item = this.createEntity({ ...skillDto });
-
 			const itemFound = await this.baseRepository.getById(item.id);
 			if (!itemFound) {
 				return new ResponseFailure(
 					ResponseTypes.RESOURCE_ERROR,
-					`${this.itemName} does not exists`
+					`${this.itemName} does not exist`
 				);
 			}
 			const itemUpdated = await this.baseRepository.update(item);
@@ -84,7 +76,7 @@ export class BaseUseCase<T extends { id?: string }> {
 			if (!itemFound) {
 				return new ResponseFailure(
 					ResponseTypes.RESOURCE_ERROR,
-					`${this.itemName} does not exists`
+					`${this.itemName} does not exist`
 				);
 			}
 			const itemDeleted = await this.baseRepository.delete(id);
