@@ -1,4 +1,4 @@
-import { createSkillEntity, SkillEntity } from 'domain/entities/skill';
+import { createSkillEntity, SkillEntity } from 'domain/entities';
 import { SkillUseCase } from 'domain/useCases';
 import { BaseController } from './baseController';
 

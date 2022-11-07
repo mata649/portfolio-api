@@ -1,4 +1,4 @@
-import { SkillEntity } from 'domain/entities/skill';
+import { SkillEntity } from 'domain/entities';
 import { SkillRepository } from 'domain/repositories';
 
 import { BaseUseCase } from './baseUseCase';

@@ -1,4 +1,4 @@
-import { CategoryEntity } from 'domain/entities/category';
+import { CategoryEntity } from 'domain/entities';
 import { CategoryRepository } from 'domain/repositories';
 
 import { BaseUseCase } from './baseUseCase';

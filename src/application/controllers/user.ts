@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import {UserEntity, createUserEntity } from 'domain/entities/user';
+import {UserEntity, createUserEntity } from 'domain/entities';
 import { ResponseTypes } from 'domain/response';
 import { UserUseCase } from 'domain/useCases';
 import { generateJWT } from 'application/auth/jwt';

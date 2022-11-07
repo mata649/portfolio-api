@@ -1,4 +1,4 @@
-import { CategoryEntity, createCategoryEntity } from 'domain/entities/category';
+import { CategoryEntity, createCategoryEntity } from 'domain/entities';
 import { CategoryUseCase } from 'domain/useCases';
 import { BaseController } from './baseController';
 
