@@ -1,6 +1,9 @@
+import { BaseRepository } from 'domain/repositories/baseRepository';
 import { Model, Document, HydratedDocument } from 'mongoose';
 
-export class baseMongoRepository<T extends { id?: string }> {
+export class baseMongoRepository<T extends { id?: string }>
+	implements BaseRepository<T>
+{
 	constructor(
 		private readonly model: Model<T>,
 		private createGenericEntity: (item: Partial<T>) => T
@@ -27,17 +30,18 @@ export class baseMongoRepository<T extends { id?: string }> {
 	}
 	async get(): Promise<T[] | null> {
 		const itemsFound = await this.model.find();
+
 		return itemsFound.map((item) => this.createItemEntity(item));
 	}
 	async getById(id: T['id']): Promise<T | null> {
 		const userFound = await this.model.findById(id);
 		return userFound && this.createItemEntity(userFound);
 	}
-	async delete(id: string): Promise<T | null> {
+	async delete(id: string): Promise<T> {
 		const itemDeleted = await this.model.findByIdAndDelete(id);
 		return this.createItemEntity(itemDeleted);
 	}
-	async update(item: T): Promise<T | null> {
+	async update(item: T): Promise<T> {
 		const itemUpdated = await this.model.findByIdAndUpdate(item.id, item);
 		return this.createItemEntity(itemUpdated);
 	}
