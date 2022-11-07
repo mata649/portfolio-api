@@ -1,8 +1,4 @@
-import {
-	CreateUserDto,
-	LoginUserDto,
-	createUserEntity,
-} from '../entities/user';
+import { UserEntity } from '../entities/user';
 
 import { UserRepository } from '../repositories/user';
 import { ResponseFailure, ResponseSuccess, ResponseTypes } from '../response';
@@ -26,12 +22,8 @@ export class UserUseCase {
 	 * @param {CreateUserDto} userDto - Object with the information to create the user
 	 * @returns {Promise<ResponseSuccess | ResponseFailure>} - Response with the information of the transaction
 	 */
-	async create(
-		userDto: CreateUserDto
-	): Promise<ResponseSuccess | ResponseFailure> {
+	async create(user: UserEntity): Promise<ResponseSuccess | ResponseFailure> {
 		try {
-			const user = createUserEntity(userDto);
-
 			if (await this.userRepository.getByEmail(user.email)) {
 				return new ResponseFailure(
 					ResponseTypes.RESOURCE_ERROR,
@@ -60,11 +52,8 @@ export class UserUseCase {
 	 * @param {LoginUserDto} userDto - Object with information to authenticate the user in the repository
 	 * @returns {Promise<ResponseSuccess | ResponseFailure>} - Response with the information of the transaction
 	 */
-	async login(
-		userDto: LoginUserDto
-	): Promise<ResponseSuccess | ResponseFailure> {
+	async login(user: UserEntity): Promise<ResponseSuccess | ResponseFailure> {
 		try {
-			const user = createUserEntity({ ...userDto });
 			const userFound = await this.userRepository.getByEmail(user.email);
 			if (!userFound) {
 				return new ResponseFailure(
