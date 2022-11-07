@@ -23,9 +23,9 @@ export class BaseUseCase<T extends { id?: string }> {
 			);
 		}
 	}
-	async get(): Promise<ResponseSuccess | ResponseFailure> {
+	async get(filters: Partial<T>): Promise<ResponseSuccess | ResponseFailure> {
 		try {
-			const items = await this.baseRepository.get();
+			const items = await this.baseRepository.get(filters);
 
 			return new ResponseSuccess(ResponseTypes.OK, items);
 		} catch (error) {
