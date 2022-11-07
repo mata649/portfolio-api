@@ -1,11 +1,16 @@
-import { UserEntity } from '../../domain/entities/user';
-import { Config } from '../../config';
+import { UserEntity } from 'domain/entities/user';
+import { Config } from 'config';
 
 import jwt from 'jsonwebtoken';
+export interface JwtPayload {
+	id: string;
+	name: string;
+}
+
 const config = Config.loadConfig();
 export const generateJWT = (id: UserEntity['id'], name: UserEntity['name']) => {
 	return new Promise((resolve, reject) => {
-		const payload = { id, name };
+		const payload: JwtPayload = { id, name };
 
 		jwt.sign(
 			payload,
@@ -24,5 +29,3 @@ export const generateJWT = (id: UserEntity['id'], name: UserEntity['name']) => {
 		);
 	});
 };
-
-
