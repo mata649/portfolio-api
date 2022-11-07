@@ -4,9 +4,13 @@ export interface CategoryEntity {
 	color: string;
 }
 export const createCategoryEntity = ({
-	id,
-	name,
-	color,
+	id = '',
+	name = '',
+	color = '',
 }: Partial<CategoryEntity>): CategoryEntity => {
-	return { id: id ?? '', name: name ?? '', color: color ?? '' };
+	return {
+		id,
+		name,
+		color,
+	};
 };

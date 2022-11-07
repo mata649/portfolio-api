@@ -4,9 +4,13 @@ export interface SkillEntity {
 	color: string;
 }
 export const createSkillEntity = ({
-	id,
-	name,
-	color,
+	id = '',
+	name = '',
+	color = '',
 }: Partial<SkillEntity>): SkillEntity => {
-	return { id: id ?? '', name: name ?? '', color: color ?? '' };
+	return {
+		id,
+		name,
+		color,
+	};
 };
