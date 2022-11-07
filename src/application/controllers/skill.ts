@@ -1,27 +1,26 @@
 import { Request, Response } from 'express';
-import { CreateSkillDto, UpdateSkillDto } from 'domain/entities/skill';
+import { createSkillEntity } from 'domain/entities/skill';
 import { SkillUseCase } from 'domain/useCases';
 
 export class SkillController {
 	constructor(private skillUseCase: SkillUseCase) {}
 
 	create = async (req: Request, res: Response) => {
-
-		const skill: CreateSkillDto = {
+		const skill = createSkillEntity({
 			color: req.body.color,
 			name: req.body.name,
-		};
+		});
 		const response = await this.skillUseCase.create(skill);
 
 		res.status(response.type).json(response.value);
 	};
 
 	update = async (req: Request, res: Response) => {
-		const skill: UpdateSkillDto = {
+		const skill = createSkillEntity({
 			id: req.params.id,
 			color: req.body.color,
 			name: req.body.name,
-		};
+		});
 		const response = await this.skillUseCase.update(skill);
 		res.status(response.type).json(response.value);
 	};
