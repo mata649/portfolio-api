@@ -42,7 +42,9 @@ export class baseMongoRepository<T extends { id?: string }>
 		return this.createItemEntity(itemDeleted);
 	}
 	async update(item: T): Promise<T> {
-		const itemUpdated = await this.model.findByIdAndUpdate(item.id, item);
+		const itemUpdated = await this.model.findByIdAndUpdate(item.id, item, {
+			new: true,
+		});
 		return this.createItemEntity(itemUpdated);
 	}
 }
