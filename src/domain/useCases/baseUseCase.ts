@@ -7,8 +7,8 @@ import {
 
 export class BaseUseCase<T extends { id?: string }> {
 	constructor(
-		private readonly baseRepository: BaseRepository<T>,
-		private itemName: string
+		protected readonly baseRepository: BaseRepository<T>,
+		protected itemName: string
 	) {}
 
 	async create(item: T): Promise<ResponseSuccess | ResponseFailure> {

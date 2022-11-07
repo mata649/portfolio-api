@@ -3,8 +3,8 @@ import { BaseUseCase } from 'domain/useCases/baseUseCase';
 
 export class BaseController<T extends { id?: string }> {
 	constructor(
-		private baseUseCase: BaseUseCase<T>,
-		private createItemEntity: (item: Partial<T>) => T
+		protected baseUseCase: BaseUseCase<T>,
+		protected createItemEntity: (item: Partial<T>) => T
 	) {}
 
 	create = async (req: Request, res: Response) => {
