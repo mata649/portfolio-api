@@ -1,5 +1,5 @@
-import { createProjectEntity, ProjectEntity } from 'domain/entities';
-import { ProjectUseCase } from 'domain/useCases';
+import { createProjectEntity, ProjectEntity } from 'portfolio/entities';
+import { ProjectUseCase } from 'portfolio/useCases';
 import { BaseController } from './baseController';
 
 export class ProjectController extends BaseController<ProjectEntity, ProjectUseCase> {

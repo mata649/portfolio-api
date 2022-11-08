@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { PostEntity } from 'domain/entities';
+import { PostEntity } from 'portfolio/entities';
 const PostSchema = new Schema<PostEntity>({
 	defaultTitle: {
 		type: String,

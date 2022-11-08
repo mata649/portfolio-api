@@ -1,4 +1,4 @@
-import { BaseRepository } from 'domain/repositories/baseRepository';
+import { BaseRepository } from 'portfolio/repositories/baseRepository';
 import { Model, Document, HydratedDocument } from 'mongoose';
 
 export class baseMongoRepository<T extends { id?: string }>

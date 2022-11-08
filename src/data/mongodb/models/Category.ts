@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { CategoryEntity } from 'domain/entities';
+import { CategoryEntity } from 'portfolio/entities';
 const CategorySchema = new Schema<CategoryEntity>({
 	name: {
 		type: String,

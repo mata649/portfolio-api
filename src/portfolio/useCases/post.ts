@@ -1,10 +1,10 @@
-import { PostEntity } from 'domain/entities';
-import { PostRepository } from 'domain/repositories';
+import { PostEntity } from 'portfolio/entities';
+import { PostRepository } from 'portfolio/repositories';
 import {
 	ResponseFailure,
 	ResponseSuccess,
 	ResponseTypes,
-} from 'domain/response';
+} from 'portfolio/response';
 
 import { BaseUseCase } from './baseUseCase';
 

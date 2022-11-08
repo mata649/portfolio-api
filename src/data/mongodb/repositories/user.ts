@@ -1,5 +1,5 @@
-import { createUserEntity, UserEntity } from 'domain/entities';
-import { UserRepository } from 'domain/repositories/user';
+import { createUserEntity, UserEntity } from 'portfolio/entities';
+import { UserRepository } from 'portfolio/repositories/user';
 import { UserModel } from 'data/mongodb/models';
 import { Document } from 'mongoose';
 

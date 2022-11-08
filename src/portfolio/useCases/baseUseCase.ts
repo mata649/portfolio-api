@@ -1,9 +1,9 @@
-import { BaseRepository } from 'domain/repositories/baseRepository';
+import { BaseRepository } from 'portfolio/repositories/baseRepository';
 import {
 	ResponseFailure,
 	ResponseSuccess,
 	ResponseTypes,
-} from 'domain/response';
+} from 'portfolio/response';
 
 export class BaseUseCase<
 	T extends { id?: string },

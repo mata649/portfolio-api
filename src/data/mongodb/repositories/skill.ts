@@ -1,7 +1,7 @@
 import { baseMongoRepository } from './baseMongoRepository';
-import { SkillEntity, createSkillEntity } from 'domain/entities';
+import { SkillEntity, createSkillEntity } from 'portfolio/entities';
 import { SkillModel } from 'data/mongodb/models/';
-import { SkillRepository } from 'domain/repositories';
+import { SkillRepository } from 'portfolio/repositories';
 
 export class SkillMongoRepository
 	extends baseMongoRepository<SkillEntity>

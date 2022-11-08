@@ -1,5 +1,5 @@
-import { SkillEntity } from 'domain/entities';
-import { SkillRepository } from 'domain/repositories';
+import { SkillEntity } from 'portfolio/entities';
+import { SkillRepository } from 'portfolio/repositories';
 
 import { BaseUseCase } from './baseUseCase';
 

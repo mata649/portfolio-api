@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { BaseUseCase } from 'domain/useCases/baseUseCase';
-import { BaseRepository } from 'domain/repositories/baseRepository';
+import { BaseUseCase } from 'portfolio/useCases/baseUseCase';
+import { BaseRepository } from 'portfolio/repositories/baseRepository';
 
 export class BaseController<
 	T extends { id?: string },

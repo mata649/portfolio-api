@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { SkillEntity } from 'domain/entities';
+import { SkillEntity } from 'portfolio/entities';
 const SkillSchema = new Schema<SkillEntity>({
 	name: {
 		type: String,

@@ -4,7 +4,7 @@ import {
 	CategoryMongoRepository,
 	ProjectMongoRepository,
 } from 'data/mongodb/repositories';
-import { ProjectUseCase } from 'domain/useCases';
+import { ProjectUseCase } from 'portfolio/useCases';
 import { ProjectController } from 'application/controllers';
 import { fieldValidator } from 'application/middlewares/fieldValidator';
 import { validateToken } from 'application/middlewares/validateToken';

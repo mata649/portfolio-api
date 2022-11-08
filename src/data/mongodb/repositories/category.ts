@@ -1,7 +1,7 @@
 import { baseMongoRepository } from './baseMongoRepository';
-import { CategoryEntity, createCategoryEntity } from 'domain/entities';
+import { CategoryEntity, createCategoryEntity } from 'portfolio/entities';
 import { CategoryModel } from 'data/mongodb/models/';
-import { CategoryRepository } from 'domain/repositories';
+import { CategoryRepository } from 'portfolio/repositories';
 
 export class CategoryMongoRepository
 	extends baseMongoRepository<CategoryEntity>

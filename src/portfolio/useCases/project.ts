@@ -1,10 +1,10 @@
-import { ProjectEntity } from 'domain/entities';
-import { CategoryRepository, ProjectRepository } from 'domain/repositories';
+import { ProjectEntity } from 'portfolio/entities';
+import { CategoryRepository, ProjectRepository } from 'portfolio/repositories';
 import {
 	ResponseFailure,
 	ResponseSuccess,
 	ResponseTypes,
-} from 'domain/response';
+} from 'portfolio/response';
 
 import { BaseUseCase } from './baseUseCase';
 

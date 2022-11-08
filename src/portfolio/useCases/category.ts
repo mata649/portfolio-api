@@ -1,5 +1,5 @@
-import { CategoryEntity } from 'domain/entities';
-import { CategoryRepository } from 'domain/repositories';
+import { CategoryEntity } from 'portfolio/entities';
+import { CategoryRepository } from 'portfolio/repositories';
 
 import { BaseUseCase } from './baseUseCase';
 

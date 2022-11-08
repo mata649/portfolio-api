@@ -1,6 +1,6 @@
 import { Response, Request } from 'express';
-import { createPostEntity, PostEntity } from 'domain/entities';
-import { PostUseCase } from 'domain/useCases';
+import { createPostEntity, PostEntity } from 'portfolio/entities';
+import { PostUseCase } from 'portfolio/useCases';
 import { BaseController } from './baseController';
 
 export class PostController extends BaseController<PostEntity, PostUseCase> {

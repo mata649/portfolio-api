@@ -1,4 +1,4 @@
-import { UserEntity } from 'domain/entities';
+import { UserEntity } from 'portfolio/entities';
 
 import { UserRepository } from '../repositories/user';
 import { ResponseFailure, ResponseSuccess, ResponseTypes } from '../response';

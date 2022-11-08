@@ -1,7 +1,7 @@
 import { baseMongoRepository } from './baseMongoRepository';
-import { PostEntity, createPostEntity } from 'domain/entities';
+import { PostEntity, createPostEntity } from 'portfolio/entities';
 import { PostModel } from 'data/mongodb/models/';
-import { PostRepository } from 'domain/repositories';
+import { PostRepository } from 'portfolio/repositories';
 
 export class PostMongoRepository
 	extends baseMongoRepository<PostEntity>

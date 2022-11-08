@@ -1,4 +1,4 @@
-import { UserEntity } from 'domain/entities/user';
+import { UserEntity } from 'portfolio/entities/user';
 import { Config } from 'config';
 
 import jwt from 'jsonwebtoken';

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
 import { SkillMongoRepository } from 'data/mongodb/repositories';
-import { SkillUseCase } from 'domain/useCases';
+import { SkillUseCase } from 'portfolio/useCases';
 import { SkillController } from 'application/controllers';
 import { fieldValidator } from 'application/middlewares/fieldValidator';
 import { validateToken } from 'application/middlewares/validateToken';
