@@ -5,9 +5,12 @@ import {
 	ResponseTypes,
 } from 'domain/response';
 
-export class BaseUseCase<T extends { id?: string }> {
+export class BaseUseCase<
+	T extends { id?: string },
+	TRepository extends BaseRepository<T>
+> {
 	constructor(
-		protected readonly baseRepository: BaseRepository<T>,
+		protected readonly baseRepository: TRepository,
 		protected itemName: string
 	) {}
 

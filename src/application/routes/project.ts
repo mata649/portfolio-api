@@ -23,8 +23,8 @@ router.post(
 	'/',
 	check('name').notEmpty().withMessage('name is required'),
 	check('image').notEmpty().withMessage('image is required'),
-	check('github_url').notEmpty().withMessage('github_url is required'),
-	check('id_category').isMongoId().withMessage('category_id is not valid id'),
+	check('githubUrl').notEmpty().withMessage('githubUrl is required'),
+	check('idCategory').isMongoId().withMessage('idCategory is not valid id'),
 	fieldValidator,
 	validateToken,
 	projectCtrl.create
@@ -48,8 +48,8 @@ router.put(
 	check('id').isMongoId().withMessage('id param is not a valid id'),
 	check('name').notEmpty().withMessage('name is required'),
 	check('image').notEmpty().withMessage('image is required'),
-	check('github_url').notEmpty().withMessage('github_url is required'),
-	check('id_category').isMongoId().withMessage('category_id is not valid id'),
+	check('githubUrl').notEmpty().withMessage('githubUrl is required'),
+	check('idCategory').isMongoId().withMessage('idCategory is not valid id'),
 	fieldValidator,
 	validateToken,
 	projectCtrl.update

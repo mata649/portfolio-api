@@ -8,7 +8,10 @@ import {
 
 import { BaseUseCase } from './baseUseCase';
 
-export class ProjectUseCase extends BaseUseCase<ProjectEntity> {
+export class ProjectUseCase extends BaseUseCase<
+	ProjectEntity,
+	ProjectRepository
+> {
 	constructor(
 		projectRepository: ProjectRepository,
 		protected readonly categoryRepository: CategoryRepository
@@ -21,7 +24,7 @@ export class ProjectUseCase extends BaseUseCase<ProjectEntity> {
 	): Promise<ResponseSuccess | ResponseFailure> {
 		try {
 			const categoryFound = await this.categoryRepository.getById(
-				project.id_category
+				project.idCategory
 			);
 			if (!categoryFound) {
 				return new ResponseFailure(
@@ -52,7 +55,7 @@ export class ProjectUseCase extends BaseUseCase<ProjectEntity> {
 				);
 			}
 			const categoryFound = await this.categoryRepository.getById(
-				project.id_category
+				project.idCategory
 			);
 			if (!categoryFound) {
 				return new ResponseFailure(

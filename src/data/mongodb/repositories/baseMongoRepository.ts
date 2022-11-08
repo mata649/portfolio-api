@@ -9,7 +9,7 @@ export class baseMongoRepository<T extends { id?: string }>
 		protected createGenericEntity: (item: Partial<T>) => T
 	) {}
 
-	private createItemEntity(
+	protected createItemEntity(
 		item:
 			| (Document<unknown, any, T> & T)
 			| HydratedDocument<T, {}, {}>
@@ -23,13 +23,23 @@ export class baseMongoRepository<T extends { id?: string }>
 		}
 		return this.createGenericEntity({});
 	}
+	protected parseFilters(filters: Partial<T>): Partial<T> {
+		for (const key in filters) {
+			if (filters[key] === '' || filters[key] === null) {
+				delete filters[key];
+			}
+		}
+		return filters;
+	}
 	async create(item: T): Promise<T> {
 		const itemCreated = new this.model(item);
 		await itemCreated.save();
 		return this.createItemEntity(itemCreated);
 	}
-	async get(): Promise<T[] | null> {
-		const itemsFound = await this.model.find();
+	async get(filters: Partial<T>): Promise<T[] | null> {
+		filters = this.parseFilters(filters);
+		console.log(filters)
+		const itemsFound = await this.model.find(filters);
 
 		return itemsFound.map((item) => this.createItemEntity(item));
 	}

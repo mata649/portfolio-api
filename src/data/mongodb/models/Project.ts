@@ -5,11 +5,11 @@ const ProjectSchema = new Schema<ProjectEntity>({
 		type: String,
 		required: true,
 	},
-	github_url: {
+	githubUrl: {
 		type: String,
 		required: true,
 	},
-	id_category: {
+	idCategory: {
 		type: String,
 		ref: 'Category',
 		required: true,

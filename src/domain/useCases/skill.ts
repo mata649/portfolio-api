@@ -3,7 +3,7 @@ import { SkillRepository } from 'domain/repositories';
 
 import { BaseUseCase } from './baseUseCase';
 
-export class SkillUseCase extends BaseUseCase<SkillEntity> {
+export class SkillUseCase extends BaseUseCase<SkillEntity, SkillRepository> {
 	constructor(skillRepository: SkillRepository) {
 		super(skillRepository,  'skill');
 	}

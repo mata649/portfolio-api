@@ -2,22 +2,22 @@ export interface ProjectEntity {
 	id: string;
 	name: string;
 	image: string;
-	github_url: string;
-	id_category: string;
+	githubUrl: string;
+	idCategory: string;
 }
 
 export const createProjectEntity = ({
 	id = '',
 	name = '',
 	image = '',
-	github_url = '',
-	id_category = '',
+	githubUrl = '',
+	idCategory = '',
 }: Partial<ProjectEntity>) => {
 	return {
 		id,
 		name,
 		image,
-		github_url,
-		id_category,
+		githubUrl,
+		idCategory,
 	};
 };

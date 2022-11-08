@@ -1,9 +1,13 @@
 import { Request, Response } from 'express';
 import { BaseUseCase } from 'domain/useCases/baseUseCase';
+import { BaseRepository } from 'domain/repositories/baseRepository';
 
-export class BaseController<T extends { id?: string }> {
+export class BaseController<
+	T extends { id?: string },
+	TUseCase extends BaseUseCase<T, BaseRepository<T>>
+> {
 	constructor(
-		protected baseUseCase: BaseUseCase<T>,
+		protected baseUseCase: TUseCase,
 		protected createItemEntity: (item: Partial<T>) => T
 	) {}
 
@@ -25,9 +29,11 @@ export class BaseController<T extends { id?: string }> {
 		res.status(response.type).json(response.value);
 	};
 
-	get = async (_: Request, res: Response) => {
-		const response = await this.baseUseCase.get();
+	get = async (req: Request, res: Response) => {
+		const filters = this.createItemEntity(req.query as Partial<T>);
+		const response = await this.baseUseCase.get(filters);
 		res.status(response.type).json(response.value);
+
 	};
 	delete = async (req: Request, res: Response) => {
 		const response = await this.baseUseCase.delete(req.params.id);

@@ -3,7 +3,7 @@ import { SkillUseCase } from 'domain/useCases';
 import { BaseController } from './baseController';
 
 
-export class SkillController extends BaseController<SkillEntity> {
+export class SkillController extends BaseController<SkillEntity, SkillUseCase> {
 	constructor(skillUseCase: SkillUseCase) {
 		super(skillUseCase, createSkillEntity);
 	}
