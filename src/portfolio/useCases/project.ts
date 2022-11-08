@@ -16,7 +16,7 @@ export class ProjectUseCase extends BaseUseCase<
 		projectRepository: ProjectRepository,
 		protected readonly categoryRepository: CategoryRepository
 	) {
-		super(projectRepository, 'repository');
+		super(projectRepository, 'project');
 	}
 
 	async create(
