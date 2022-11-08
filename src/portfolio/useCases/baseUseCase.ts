@@ -46,7 +46,7 @@ export class BaseUseCase<
 			}
 			return new ResponseFailure(
 				ResponseTypes.RESOURCE_ERROR,
-				`${this.itemName} does not exiss`
+				`${this.itemName} does not exist`
 			);
 		} catch (error) {
 			return new ResponseFailure(
