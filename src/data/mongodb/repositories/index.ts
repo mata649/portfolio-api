@@ -3,3 +3,4 @@ export * from './skill';
 export * from './category';
 export * from './project';
 export * from './post';
+export * from './postContent';

@@ -7,6 +7,7 @@ import {
 	categoryRouter,
 	projectRouter,
 	postRouter,
+	postContentRouter,
 } from 'application/routes';
 
 dbConnection();
@@ -19,6 +20,7 @@ app.use('/skills', skillRouter);
 app.use('/categories', categoryRouter);
 app.use('/projects', projectRouter);
 app.use('/posts', postRouter);
+app.use('/postsContent', postContentRouter);
 app.listen(config.PORT, () => {
 	console.log(`Server running on port ${config.PORT}`);
 });

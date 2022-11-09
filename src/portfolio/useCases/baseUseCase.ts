@@ -28,6 +28,7 @@ export class BaseUseCase<
 	}
 	async get(filters: Partial<T>): Promise<ResponseSuccess | ResponseFailure> {
 		try {
+
 			const items = await this.baseRepository.get(filters);
 
 			return new ResponseSuccess(ResponseTypes.OK, items);

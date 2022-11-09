@@ -38,7 +38,6 @@ export class baseMongoRepository<T extends { id?: string }>
 	}
 	async get(filters: Partial<T>): Promise<T[] | null> {
 		filters = this.parseFilters(filters);
-		console.log(filters)
 		const itemsFound = await this.model.find(filters);
 
 		return itemsFound.map((item) => this.createItemEntity(item));
