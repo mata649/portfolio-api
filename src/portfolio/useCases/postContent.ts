@@ -16,7 +16,7 @@ export class PostContentUseCase extends BaseUseCase<
 		postContentRepository: PostContentRepository,
 		protected readonly postRepository: PostRepository
 	) {
-		super(postContentRepository, 'postContent');
+		super(postContentRepository, 'Post content');
 	}
 
 	private async isTheLanguageAlreadyWritten(
