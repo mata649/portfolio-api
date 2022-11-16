@@ -5,9 +5,9 @@ import {
 	ProjectMongoRepository,
 } from 'data/mongodb/repositories';
 import { ProjectUseCase } from 'portfolio/useCases';
-import { ProjectController } from 'application/controllers';
-import { fieldValidator } from 'application/middlewares/fieldValidator';
-import { validateToken } from 'application/middlewares/validateToken';
+import { ProjectController } from 'rest/controllers';
+import { fieldValidator } from 'rest/middlewares/fieldValidator';
+import { validateToken } from 'rest/middlewares/validateToken';
 
 const router = Router();
 

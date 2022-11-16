@@ -5,9 +5,9 @@ import {
 	PostMongoRepository,
 } from 'data/mongodb/repositories';
 import { PostContentUseCase } from 'portfolio/useCases';
-import { PostContentController } from 'application/controllers';
-import { fieldValidator } from 'application/middlewares/fieldValidator';
-import { validateToken } from 'application/middlewares/validateToken';
+import { PostContentController } from 'rest/controllers';
+import { fieldValidator } from 'rest/middlewares/fieldValidator';
+import { validateToken } from 'rest/middlewares/validateToken';
 import { Languages } from 'portfolio/entities/language';
 
 const router = Router();

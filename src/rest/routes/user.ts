@@ -2,8 +2,8 @@ import { Router } from 'express';
 import { check } from 'express-validator';
 import { UserMongoRepository } from 'data/mongodb/repositories';
 import { UserUseCase } from 'portfolio/useCases';
-import { UserController } from 'application/controllers';
-import { fieldValidator } from 'application/middlewares/fieldValidator';
+import { UserController } from 'rest/controllers';
+import { fieldValidator } from 'rest/middlewares/fieldValidator';
 
 const router = Router();
 

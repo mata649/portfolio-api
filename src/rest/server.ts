@@ -8,7 +8,7 @@ import {
 	projectRouter,
 	postRouter,
 	postContentRouter,
-} from 'application/routes';
+} from 'rest/routes';
 
 dbConnection();
 

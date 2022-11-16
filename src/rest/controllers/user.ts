@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import {UserEntity, createUserEntity } from 'portfolio/entities';
 import { ResponseTypes } from 'portfolio/response';
 import { UserUseCase } from 'portfolio/useCases';
-import { generateJWT } from 'application/auth/jwt';
+import { generateJWT } from 'rest/auth/jwt';
 
 export class UserController {
 	constructor(private userUseCase: UserUseCase) {}

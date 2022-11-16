@@ -2,9 +2,9 @@ import { Router } from 'express';
 import { check } from 'express-validator';
 import { PostMongoRepository } from 'data/mongodb/repositories';
 import { PostUseCase } from 'portfolio/useCases';
-import { PostController } from 'application/controllers/post';
-import { fieldValidator } from 'application/middlewares/fieldValidator';
-import { validateToken } from 'application/middlewares/validateToken';
+import { PostController } from 'rest/controllers/post';
+import { fieldValidator } from 'rest/middlewares/fieldValidator';
+import { validateToken } from 'rest/middlewares/validateToken';
 
 const router = Router();
 

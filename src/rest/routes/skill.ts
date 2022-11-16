@@ -2,9 +2,9 @@ import { Router } from 'express';
 import { check } from 'express-validator';
 import { SkillMongoRepository } from 'data/mongodb/repositories';
 import { SkillUseCase } from 'portfolio/useCases';
-import { SkillController } from 'application/controllers';
-import { fieldValidator } from 'application/middlewares/fieldValidator';
-import { validateToken } from 'application/middlewares/validateToken';
+import { SkillController } from 'rest/controllers';
+import { fieldValidator } from 'rest/middlewares/fieldValidator';
+import { validateToken } from 'rest/middlewares/validateToken';
 
 const router = Router();
 
