@@ -9,5 +9,10 @@ const SkillSchema = new Schema<SkillEntity>({
 		type: String,
 		required: true,
 	},
+	idCategory: {
+		type: String,
+		ref: 'Category',
+		required: true,
+	},
 });
 export const SkillModel = model<SkillEntity>('Skill', SkillSchema);

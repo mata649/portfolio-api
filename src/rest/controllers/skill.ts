@@ -7,4 +7,5 @@ export class SkillController extends BaseController<SkillEntity, SkillUseCase> {
 	constructor(skillUseCase: SkillUseCase) {
 		super(skillUseCase, createSkillEntity);
 	}
+
 }
