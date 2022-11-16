@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose';
 import { ProjectEntity } from 'portfolio/entities';
+
 const ProjectSchema = new Schema<ProjectEntity>({
 	name: {
 		type: String,
