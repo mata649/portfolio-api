@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
-import { PostMongoRepository } from 'data/mongodb/repositories';
+import { PostContentMongoRepository, PostMongoRepository } from 'data/mongodb/repositories';
 import { PostUseCase } from 'portfolio/useCases';
 import { PostController } from 'rest/controllers/post';
 import { fieldValidator } from 'rest/middlewares/fieldValidator';
@@ -9,7 +9,8 @@ import { validateToken } from 'rest/middlewares/validateToken';
 const router = Router();
 
 const postRepository = new PostMongoRepository();
-const postUseCase = new PostUseCase(postRepository);
+const postContentRepository = new PostContentMongoRepository();
+const postUseCase = new PostUseCase(postRepository, postContentRepository);
 const postCtrl = new PostController(postUseCase);
 
 router.post(
