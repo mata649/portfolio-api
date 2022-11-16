@@ -1,5 +1,5 @@
 import { PostEntity } from 'portfolio/entities';
-import { PostRepository } from 'portfolio/repositories';
+import { PostContentRepository, PostRepository } from 'portfolio/repositories';
 import {
 	ResponseFailure,
 	ResponseSuccess,
@@ -9,7 +9,10 @@ import {
 import { BaseUseCase } from './baseUseCase';
 
 export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
-	constructor(postRepository: PostRepository) {
+	constructor(
+		postRepository: PostRepository,
+		private postContentRepository: PostContentRepository
+	) {
 		super(postRepository, 'Post');
 	}
 
@@ -82,14 +85,25 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 	): Promise<ResponseSuccess | ResponseFailure> {
 		try {
 			const postFound = await this.baseRepository.getBySlug(slug);
-			if (postFound) {
-				return new ResponseSuccess(ResponseTypes.OK, postFound);
+			if (!postFound) {
+				return new ResponseFailure(
+					ResponseTypes.RESOURCE_ERROR,
+					'Post does not exists'
+				);
 			}
-			return new ResponseFailure(
-				ResponseTypes.RESOURCE_ERROR,
-				`${this.itemName} does not exist`
-			);
+
+			const postContentsFound = await this.postContentRepository.get({
+				idPost: postFound.id,
+			});
+			if (!postContentsFound || postContentsFound.length < 0) {
+				return new ResponseFailure(
+					ResponseTypes.RESOURCE_ERROR,
+					'Content does not exists'
+				);
+			}
+			return new ResponseSuccess(ResponseTypes.OK, postContentsFound);
 		} catch (error) {
+			console.log(error);
 			return new ResponseFailure(
 				ResponseTypes.SYSTEM_ERROR,
 				'system error'
