@@ -13,6 +13,7 @@ export class BaseController<
 
 	create = async (req: Request, res: Response) => {
 		const item = this.createItemEntity(req.body);
+
 		const response = await this.baseUseCase.create(item);
 
 		res.status(response.type).json(response.value);

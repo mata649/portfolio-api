@@ -19,9 +19,14 @@ export class SkillUseCase extends BaseUseCase<SkillEntity, SkillRepository> {
 		skill: SkillEntity
 	): Promise<ResponseSuccess | ResponseFailure> {
 		try {
-			const categoryFound = await this.categoryRepository.getById(skill.idCategory)
-			if(!categoryFound){
-				return new ResponseFailure(ResponseTypes.RESOURCE_ERROR, 'category does not exist')
+			const categoryFound = await this.categoryRepository.getById(
+				skill.idCategory
+			);
+			if (!categoryFound) {
+				return new ResponseFailure(
+					ResponseTypes.RESOURCE_ERROR,
+					'category does not exist'
+				);
 			}
 			const skillCreated = await this.baseRepository.create(skill);
 
@@ -33,4 +38,5 @@ export class SkillUseCase extends BaseUseCase<SkillEntity, SkillRepository> {
 			);
 		}
 	}
+
 }
