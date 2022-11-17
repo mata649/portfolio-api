@@ -6,9 +6,7 @@ import { Document } from 'mongoose';
 export class UserMongoRepository implements UserRepository {
 	private userModel = UserModel;
 
-	private buildUserEntity = (
-		user: Document<unknown, any, UserEntity> & UserEntity
-	): UserEntity => {
+	private buildUserEntity = (user: Document): UserEntity => {
 		return createUserEntity({ ...user.toObject(), id: user.id });
 	};
 	async create(user: UserEntity): Promise<UserEntity> {
