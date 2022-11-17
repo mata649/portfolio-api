@@ -1,7 +1,6 @@
 import { Schema, model } from 'mongoose';
-import { ProjectEntity } from 'portfolio/entities';
 
-const ProjectSchema = new Schema<ProjectEntity>({
+const ProjectSchema = new Schema({
 	name: {
 		type: String,
 		required: true,
@@ -11,13 +10,13 @@ const ProjectSchema = new Schema<ProjectEntity>({
 		required: true,
 	},
 	idCategory: {
-		type: String,
+		type: Schema.Types.ObjectId,
 		ref: 'Category',
-		required: true,
+
 	},
 	image: {
 		type: String,
 		required: true,
 	},
 });
-export const ProjectModel = model<ProjectEntity>('Project', ProjectSchema);
+export const ProjectModel = model('Project', ProjectSchema);

@@ -1,10 +1,8 @@
 import { Schema, model } from 'mongoose';
-import { PostContentEntity } from 'portfolio/entities';
 import { Languages } from 'portfolio/entities/language';
-const PostContentSchema = new Schema<PostContentEntity>({
+const PostContentSchema = new Schema({
 	idPost:{
-		type: String,
-		ref: 'Post',
+		type: Schema.Types.ObjectId,
 		required: true,
 	},
 	content:{
@@ -22,4 +20,4 @@ const PostContentSchema = new Schema<PostContentEntity>({
 	}
 
 });
-export const PostContentModel = model<PostContentEntity>('PostContent', PostContentSchema);
+export const PostContentModel = model('PostContent', PostContentSchema);

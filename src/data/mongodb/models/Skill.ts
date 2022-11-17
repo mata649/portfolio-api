@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
-import { SkillEntity } from 'portfolio/entities';
-const SkillSchema = new Schema<SkillEntity>({
+
+const SkillSchema = new Schema({
 	name: {
 		type: String,
 		required: true,
@@ -10,9 +10,11 @@ const SkillSchema = new Schema<SkillEntity>({
 		required: true,
 	},
 	idCategory: {
-		type: String,
+		type: Schema.Types.ObjectId,
 		ref: 'Category',
-		required: true,
+
+
 	},
 });
-export const SkillModel = model<SkillEntity>('Skill', SkillSchema);
+
+export const SkillModel = model('Skill', SkillSchema);
