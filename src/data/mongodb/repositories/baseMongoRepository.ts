@@ -5,7 +5,7 @@ export class baseMongoRepository<T extends { id?: string }>
 	implements BaseRepository<T>
 {
 	constructor(
-		protected readonly model: Model<T>,
+		protected readonly model: Model<any>,
 		protected createGenericEntity: (item: Partial<T>) => T
 	) {}
 

@@ -1,6 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { PostEntity } from 'portfolio/entities';
-const PostSchema = new Schema<PostEntity>({
+const PostSchema = new Schema({
 	defaultTitle: {
 		type: String,
 		required: true,
@@ -14,4 +13,4 @@ const PostSchema = new Schema<PostEntity>({
 		required: true,
 	},
 });
-export const PostModel = model<PostEntity>('Post', PostSchema);
+export const PostModel = model('Post', PostSchema);

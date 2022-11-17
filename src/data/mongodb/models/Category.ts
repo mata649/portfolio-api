@@ -1,6 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { CategoryEntity } from 'portfolio/entities';
-const CategorySchema = new Schema<CategoryEntity>({
+const CategorySchema = new Schema({
 	name: {
 		type: String,
 		required: true,
@@ -10,4 +9,4 @@ const CategorySchema = new Schema<CategoryEntity>({
 		required: true,
 	},
 });
-export const CategoryModel = model<CategoryEntity>('Category', CategorySchema);
+export const CategoryModel = model('Category', CategorySchema);

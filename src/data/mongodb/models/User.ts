@@ -1,7 +1,6 @@
 import { Schema, model } from 'mongoose';
-import { UserEntity } from 'portfolio/entities';
 
-const UserSchema = new Schema<UserEntity>({
+const UserSchema = new Schema({
 	name: {
 		type: String,
 		required: true,
@@ -16,4 +15,4 @@ const UserSchema = new Schema<UserEntity>({
 		required: true,
 	},
 });
-export const UserModel = model<UserEntity>('User', UserSchema);
+export const UserModel = model('User', UserSchema);
