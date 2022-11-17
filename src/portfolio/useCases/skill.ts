@@ -38,5 +38,17 @@ export class SkillUseCase extends BaseUseCase<SkillEntity, SkillRepository> {
 			);
 		}
 	}
+	async getSkillsByCategory(): Promise<ResponseSuccess | ResponseFailure> {
+		try {
+			const skillsByCategory =
+				await this.baseRepository.getSkillsByCategory();
 
+			return new ResponseSuccess(ResponseTypes.CREATED, skillsByCategory);
+		} catch (error) {
+			return new ResponseFailure(
+				ResponseTypes.SYSTEM_ERROR,
+				'system error'
+			);
+		}
+	}
 }

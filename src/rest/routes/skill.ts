@@ -23,6 +23,7 @@ router.post(
 	skillCtrl.create
 );
 router.get('/', skillCtrl.get);
+router.get('/category', skillCtrl.getSkillsByCategory);
 router.get(
 	'/:id',
 	check('id').isMongoId().withMessage('id param is not a valid id'),
