@@ -1,5 +1,5 @@
 import { PostContentEntity } from 'portfolio/entities';
-import { PostContentRepository, PostRepository } from 'portfolio/repositories';
+import { createFilters, PostContentRepository, PostRepository } from 'portfolio/repositories';
 import {
 	ResponseFailure,
 	ResponseSuccess,
@@ -22,11 +22,11 @@ export class PostContentUseCase extends BaseUseCase<
 	private async isTheLanguageAlreadyWritten(
 		postContent: PostContentEntity
 	): Promise<boolean> {
-		const postsContentFound = await this.baseRepository.get({
-			idPost: postContent.idPost,
-		});
+		const postsContentFound = await this.baseRepository.get(createFilters<PostContentEntity>({
+			filters: { idPost: postContent.id },
+		}));
 
-		const listFiltered = postsContentFound?.filter(
+		const listFiltered = postsContentFound?.data.filter(
 			({ language }) => language == postContent.language
 		);
 		return listFiltered ? listFiltered.length > 0 : false;
@@ -93,9 +93,9 @@ export class PostContentUseCase extends BaseUseCase<
 			}
 
 			// Check if a postContent with the designed language was created previously
-			if ((await this.isTheLanguageAlreadyWritten(postContent))&&
-				(postContentFound.language !== postContent.language)
-
+			if (
+				(await this.isTheLanguageAlreadyWritten(postContent)) &&
+				postContentFound.language !== postContent.language
 			) {
 				return new ResponseFailure(
 					ResponseTypes.RESOURCE_ERROR,

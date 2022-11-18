@@ -1,5 +1,6 @@
-import { PostEntity } from 'portfolio/entities';
+import { PostContentEntity, PostEntity } from 'portfolio/entities';
 import { PostContentRepository, PostRepository } from 'portfolio/repositories';
+import { createFilters } from 'portfolio/repositories/';
 import {
 	ResponseFailure,
 	ResponseSuccess,
@@ -92,10 +93,12 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 				);
 			}
 
-			const postContentsFound = await this.postContentRepository.get({
-				idPost: postFound.id,
-			});
-			if (!postContentsFound || postContentsFound.length < 0) {
+			const postContentsFound = await this.postContentRepository.get(
+				createFilters<PostContentEntity>({
+					filters: { idPost: postFound.id },
+				})
+			);
+			if (!postContentsFound || postContentsFound.data.length < 0) {
 				return new ResponseFailure(
 					ResponseTypes.RESOURCE_ERROR,
 					'Content does not exists'

@@ -1,4 +1,5 @@
-import { BaseRepository } from 'portfolio/repositories/baseRepository';
+import { BaseRepository, Filters } from 'portfolio/repositories/baseRepository';
+
 import {
 	ResponseFailure,
 	ResponseSuccess,
@@ -26,7 +27,7 @@ export class BaseUseCase<
 			);
 		}
 	}
-	async get(filters: Partial<T>): Promise<ResponseSuccess | ResponseFailure> {
+	async get(filters: Filters<T>): Promise<ResponseSuccess | ResponseFailure> {
 		try {
 
 			const items = await this.baseRepository.get(filters);

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { BaseUseCase } from 'portfolio/useCases/baseUseCase';
-import { BaseRepository } from 'portfolio/repositories/baseRepository';
+import { BaseRepository, createFilters } from 'portfolio/repositories/baseRepository';
 
 export class BaseController<
 	T extends { id?: string },
@@ -31,7 +31,11 @@ export class BaseController<
 	};
 
 	get = async (req: Request, res: Response) => {
-		const filters = this.createItemEntity(req.query as Partial<T>);
+		const filters = createFilters<T>({
+			filters:this.createItemEntity(req.query as Partial<T>),
+			limit:parseInt(req.query.limit as string),
+			page:parseInt(req.query.page as string),
+		})
 		const response = await this.baseUseCase.get(filters);
 		res.status(response.type).json(response.value);
 

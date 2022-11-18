@@ -1,5 +1,6 @@
-import { BaseRepository } from 'portfolio/repositories/baseRepository';
+import { BaseRepository, Filters, Results } from 'portfolio/repositories/baseRepository';
 import { Model, Document, HydratedDocument } from 'mongoose';
+
 
 export class baseMongoRepository<T extends { id?: string }>
 	implements BaseRepository<T>
@@ -36,11 +37,19 @@ export class baseMongoRepository<T extends { id?: string }>
 		await itemCreated.save();
 		return this.createItemEntity(itemCreated);
 	}
-	async get(filters: Partial<T>): Promise<T[] | null> {
-		filters = this.parseFilters(filters);
-		const itemsFound = await this.model.find(filters);
+	async get(filters: Filters<T>): Promise<Results<T> | null> {
 
-		return itemsFound.map((item) => this.createItemEntity(item));
+		filters.filters = this.parseFilters(filters.filters);
+		const itemsFound = await this.model
+			.find(filters.filters)
+			.limit(filters.limit * 1)
+			.skip((filters.page - 1) * filters.limit);
+		const count = await this.model.find(filters.filters).countDocuments()
+		return {
+			data:itemsFound.map((item) => this.createItemEntity(item)),
+			currentPage:filters.page,
+			totalPages: Math.ceil(count / filters.limit)
+		};
 	}
 	async getById(id: T['id']): Promise<T | null> {
 		const userFound = await this.model.findById(id);
