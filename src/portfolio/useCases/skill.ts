@@ -43,7 +43,7 @@ export class SkillUseCase extends BaseUseCase<SkillEntity, SkillRepository> {
 			const skillsByCategory =
 				await this.baseRepository.getSkillsByCategory();
 
-			return new ResponseSuccess(ResponseTypes.CREATED, skillsByCategory);
+			return new ResponseSuccess(ResponseTypes.OK, skillsByCategory);
 		} catch (error) {
 			return new ResponseFailure(
 				ResponseTypes.SYSTEM_ERROR,
