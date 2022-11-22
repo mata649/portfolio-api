@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors'
 import { Config } from 'config';
 import { dbConnection } from 'data/mongodb/db/mongoInit';
 import {
@@ -13,6 +14,7 @@ import {
 dbConnection();
 
 const app = express();
+app.use(cors())
 const config = Config.loadConfig();
 app.use(express.json());
 app.use('/users', userRouter);
