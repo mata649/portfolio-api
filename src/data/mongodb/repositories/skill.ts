@@ -41,6 +41,9 @@ export class SkillMongoRepository
 						_id: 0,
 					},
 				},
+				{
+					$sort: { 'category.name': 1},
+				},
 			])
 			.exec();
 		const skillsByCategoryParsed = skillsByCategory.map(
