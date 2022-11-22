@@ -22,7 +22,7 @@ const projectCtrl = new ProjectController(projectUseCase);
 router.post(
 	'/',
 	check('name').notEmpty().withMessage('name is required'),
-	check('image').notEmpty().withMessage('image is required'),
+	check('description').notEmpty().withMessage('description is required'),
 	check('githubUrl').notEmpty().withMessage('githubUrl is required'),
 	check('idCategory').isMongoId().withMessage('idCategory is not valid id'),
 	fieldValidator,
@@ -47,7 +47,7 @@ router.put(
 	'/:id',
 	check('id').isMongoId().withMessage('id param is not a valid id'),
 	check('name').notEmpty().withMessage('name is required'),
-	check('image').notEmpty().withMessage('image is required'),
+	check('description').notEmpty().withMessage('description is required'),
 	check('githubUrl').notEmpty().withMessage('githubUrl is required'),
 	check('idCategory').isMongoId().withMessage('idCategory is not valid id'),
 	fieldValidator,

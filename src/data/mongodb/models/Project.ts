@@ -14,7 +14,7 @@ const ProjectSchema = new Schema({
 		ref: 'Category',
 
 	},
-	image: {
+	description: {
 		type: String,
 		required: true,
 	},

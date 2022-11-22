@@ -1,7 +1,7 @@
 export interface ProjectEntity {
 	id: string;
 	name: string;
-	image: string;
+	description: string;
 	githubUrl: string;
 	idCategory: string;
 }
@@ -9,14 +9,14 @@ export interface ProjectEntity {
 export const createProjectEntity = ({
 	id = '',
 	name = '',
-	image = '',
+	description = '',
 	githubUrl = '',
 	idCategory = '',
 }: Partial<ProjectEntity>) => {
 	return {
 		id,
 		name,
-		image,
+		description,
 		githubUrl,
 		idCategory,
 	};
