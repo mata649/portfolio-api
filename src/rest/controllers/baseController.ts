@@ -35,6 +35,7 @@ export class BaseController<
 			filters:this.createItemEntity(req.query as Partial<T>),
 			limit:parseInt(req.query.limit as string),
 			page:parseInt(req.query.page as string),
+			orderBy: req.query.orderBy as string
 		})
 		const response = await this.baseUseCase.get(filters);
 		res.status(response.type).json(response.value);
