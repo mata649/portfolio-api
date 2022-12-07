@@ -2,6 +2,7 @@ export interface Filters<T> {
 	filters: Partial<T>;
 	limit: number;
 	page: number;
+	orderBy: string
 }
 
 export interface Results<T> {
@@ -21,6 +22,7 @@ export const createFilters = <T>({
 	filters = {},
 	limit = 10,
 	page = 1,
+	orderBy = ''
 }: Partial<Filters<T>>): Filters<T> => {
 
 	if (isNaN(limit)) {
@@ -29,9 +31,11 @@ export const createFilters = <T>({
 	if (isNaN(page)) {
 		page = 1;
 	}
+
 	return {
 		filters,
 		limit,
 		page,
+		orderBy
 	};
 };
