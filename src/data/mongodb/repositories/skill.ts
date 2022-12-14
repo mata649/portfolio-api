@@ -20,7 +20,6 @@ export class SkillMongoRepository
 							$addToSet: {
 								id: '$id',
 								name: '$name',
-								color: '$color',
 							},
 						},
 					},
@@ -46,6 +45,7 @@ export class SkillMongoRepository
 				},
 			])
 			.exec();
+
 		const skillsByCategoryParsed = skillsByCategory.map(
 			({ skills, category }): SkillByCategory => {
 				return {
