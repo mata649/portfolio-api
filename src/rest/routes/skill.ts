@@ -16,7 +16,6 @@ const skillCtrl = new SkillController(skillUseCase);
 router.post(
 	'/',
 	check('name').notEmpty().withMessage('name is required'),
-	check('color').notEmpty().withMessage('color is required'),
 	check('idCategory').isMongoId().withMessage('idCategory param is not a valid id'),
 	fieldValidator,
 	validateToken,
@@ -41,7 +40,6 @@ router.put(
 	'/:id',
 	check('id').isMongoId().withMessage('id param is not a valid id'),
 	check('name').notEmpty().withMessage('name is required'),
-	check('color').notEmpty().withMessage('color is required'),
 	check('idCategory').isMongoId().withMessage('idCategory param is not a valid id'),
 	fieldValidator,
 	validateToken,
