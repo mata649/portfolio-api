@@ -18,8 +18,8 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 	}
 
 	private parseSlug(slug: PostEntity['slug']): PostEntity['slug'] {
-		let parsedSlug = slug.replace(' ', '-');
-		parsedSlug = parsedSlug.replace('/', '-');
+		let parsedSlug = slug.replace(/ /g, '-');
+		parsedSlug = parsedSlug.replace(/\//ig, '-');
 		parsedSlug = parsedSlug.toLowerCase();
 		return parsedSlug;
 	}
