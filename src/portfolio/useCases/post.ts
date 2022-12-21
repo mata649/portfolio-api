@@ -104,7 +104,7 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 					'Content does not exists'
 				);
 			}
-			return new ResponseSuccess(ResponseTypes.OK, postContentsFound);
+			return new ResponseSuccess(ResponseTypes.OK, {...postContentsFound, publishedDate: postFound.publishedDate});
 		} catch (error) {
 			console.log(error);
 			return new ResponseFailure(
