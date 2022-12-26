@@ -1,9 +1,11 @@
-import { UserEntity } from 'portfolio/entities';
-
 import { UserRepository } from '../repositories/user';
 import { ResponseFailure, ResponseSuccess, ResponseTypes } from '../response';
 import bcrypt from 'bcryptjs';
-
+import {
+	CreateUserRequest,
+	LoginUserRequest,
+} from 'portfolio/requests/user';
+import { InvalidRequest } from 'portfolio/requests/invalidRequest';
 export class UserUseCase {
 	/**
 	 * User use cases
@@ -22,7 +24,16 @@ export class UserUseCase {
 	 * @param {CreateUserDto} userDto - Object with the information to create the user
 	 * @returns {Promise<ResponseSuccess | ResponseFailure>} - Response with the information of the transaction
 	 */
-	async create(user: UserEntity): Promise<ResponseSuccess | ResponseFailure> {
+	async create(
+		request: InvalidRequest | CreateUserRequest
+	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
+		}
+		const user = request.value;
 		try {
 			if (await this.userRepository.getByEmail(user.email)) {
 				return new ResponseFailure(
@@ -52,7 +63,16 @@ export class UserUseCase {
 	 * @param {LoginUserDto} userDto - Object with information to authenticate the user in the repository
 	 * @returns {Promise<ResponseSuccess | ResponseFailure>} - Response with the information of the transaction
 	 */
-	async login(user: UserEntity): Promise<ResponseSuccess | ResponseFailure> {
+	async login(
+		request: LoginUserRequest | InvalidRequest
+	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
+		}
+		const user = request.value;
 		try {
 			const userFound = await this.userRepository.getByEmail(user.email);
 			if (!userFound) {

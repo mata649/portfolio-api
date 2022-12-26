@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import {UserEntity, createUserEntity } from 'portfolio/entities';
+import { buildCreateUserRequest, buildLoginUserRequest } from 'portfolio/requests/user';
 import { ResponseTypes } from 'portfolio/response';
 import { UserUseCase } from 'portfolio/useCases';
 import { generateJWT } from 'rest/auth/jwt';
@@ -9,14 +10,16 @@ export class UserController {
 
 	create = async (req: Request, res: Response) => {
 		const user = createUserEntity(req.body);
-		const response = await this.userUseCase.create(user);
+		const requestObject = buildCreateUserRequest(user)
+		const response = await this.userUseCase.create(requestObject);
 
 		res.status(response.type).json(response.value);
 	};
 
 	login = async (req: Request, res: Response) => {
 		const user = createUserEntity(req.body);
-		const response = await this.userUseCase.login(user);
+		const requestObject = buildLoginUserRequest(user)
+		const response = await this.userUseCase.login(requestObject);
 		if (response.type === ResponseTypes.OK) {
 			const user = response.value as UserEntity;
 			res.status(response.type).json({
