@@ -1,18 +1,17 @@
 import { UserEntity } from 'portfolio/entities';
 import { InvalidRequest } from '../invalidRequest';
 
-export class CreateCategoryRequest {
+export class CreateUserRequest {
 	constructor(public value: UserEntity) {}
 }
 
 const isValidEmail = (email: string): boolean => {
-	const emailRegex =
-	/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
+	const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 	return emailRegex.test(email);
 };
-export const buildCreateCategoryRequest = (
+export const buildCreateUserRequest = (
 	user: UserEntity
-): CreateCategoryRequest | InvalidRequest => {
+): CreateUserRequest | InvalidRequest => {
 	const invalidRequest = new InvalidRequest();
 	if (user.name.length < 4) {
 		invalidRequest.addError({ error: 'name empty', parameter: 'name' });
@@ -34,5 +33,5 @@ export const buildCreateCategoryRequest = (
 	if (invalidRequest.hasErrors()) {
 		return invalidRequest;
 	}
-	return new CreateCategoryRequest(user);
+	return new CreateUserRequest(user);
 };
