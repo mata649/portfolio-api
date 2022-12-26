@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 import {
 	CreateUserRequest,
 	LoginUserRequest,
-} from 'portfolio/requests/user';
+} from 'portfolio/requests/users';
 import { InvalidRequest } from 'portfolio/requests/invalidRequest';
 export class UserUseCase {
 	/**

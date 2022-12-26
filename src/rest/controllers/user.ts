@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import {UserEntity, createUserEntity } from 'portfolio/entities';
-import { buildCreateUserRequest, buildLoginUserRequest } from 'portfolio/requests/user';
+import { buildCreateUserRequest, buildLoginUserRequest } from 'portfolio/requests/users';
 import { ResponseTypes } from 'portfolio/response';
 import { UserUseCase } from 'portfolio/useCases';
 import { generateJWT } from 'rest/auth/jwt';
