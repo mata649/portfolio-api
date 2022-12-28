@@ -3,9 +3,9 @@ import {
 	Filters,
 	Results,
 } from 'portfolio/repositories/baseRepository';
-import { Model, Document, HydratedDocument, SortOrder } from 'mongoose';
+import { Model, Document, HydratedDocument, SortOrder, Types } from 'mongoose';
 
-export class baseMongoRepository<T extends { id?: string }>
+export class baseMongoRepository<T extends { id: string }>
 	implements BaseRepository<T>
 {
 	constructor(
@@ -78,10 +78,16 @@ export class baseMongoRepository<T extends { id?: string }>
 		};
 	}
 	async getById(id: T['id']): Promise<T | null> {
+		if (!Types.ObjectId.isValid(id)) {
+			return null;
+		}
 		const userFound = await this.model.findById(id);
 		return userFound && this.createItemEntity(userFound);
 	}
-	async delete(id: string): Promise<T> {
+	async delete(id: string): Promise<T | null> {
+		if (!Types.ObjectId.isValid(id)) {
+			return null;
+		}
 		const itemDeleted = await this.model.findByIdAndDelete(id);
 		return this.createItemEntity(itemDeleted);
 	}

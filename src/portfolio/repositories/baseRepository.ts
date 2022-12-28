@@ -14,7 +14,7 @@ export interface BaseRepository<T extends { id?: string }> {
 	create(item: T): Promise<T>;
 	get(filters: Filters<T>): Promise<Results<T> | null>;
 	getById(id: T['id']): Promise<T | null>;
-	delete(id: T['id']): Promise<T>;
+	delete(id: T['id']): Promise<T | null>;
 	update(skill: T): Promise<T>;
 }
 
