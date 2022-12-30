@@ -4,6 +4,7 @@ import {
 	PostContentRepository,
 	PostRepository,
 } from 'portfolio/repositories';
+import { CreateRequest, InvalidRequest, UpdateRequest } from 'portfolio/requests';
 import {
 	ResponseFailure,
 	ResponseSuccess,
@@ -39,8 +40,12 @@ export class PostContentUseCase extends BaseUseCase<
 	}
 
 	async create(
-		postContent: PostContentEntity
+		request:CreateRequest<PostContentEntity>|InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(ResponseTypes.BAD_REQUEST,request.errors)
+		}
+		const postContent = request.value
 		try {
 			//Check if post exists
 			const postFound = await this.postRepository.getById(
@@ -76,8 +81,12 @@ export class PostContentUseCase extends BaseUseCase<
 		}
 	}
 	async update(
-		postContent: PostContentEntity
+		request: UpdateRequest<PostContentEntity> | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(ResponseTypes.BAD_REQUEST, request.errors)
+		}
+		const postContent = request.value
 		try {
 			// Check if postContent exists
 			const postContentFound = await this.baseRepository.getById(

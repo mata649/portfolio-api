@@ -1,6 +1,11 @@
 import { ProjectEntity } from 'portfolio/entities';
 import { CategoryRepository, ProjectRepository } from 'portfolio/repositories';
 import {
+	CreateRequest,
+	InvalidRequest,
+	UpdateRequest,
+} from 'portfolio/requests';
+import {
 	ResponseFailure,
 	ResponseSuccess,
 	ResponseTypes,
@@ -20,8 +25,15 @@ export class ProjectUseCase extends BaseUseCase<
 	}
 
 	async create(
-		project: ProjectEntity
+		request: CreateRequest<ProjectEntity> | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
+		}
+		const project = request.value;
 		try {
 			const categoryFound = await this.categoryRepository.getById(
 				project.idCategory
@@ -44,8 +56,15 @@ export class ProjectUseCase extends BaseUseCase<
 		}
 	}
 	async update(
-		project: ProjectEntity
+		request: UpdateRequest<ProjectEntity> | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
+		}
+		const project = request.value;
 		try {
 			const projectFound = await this.baseRepository.getById(project.id);
 			if (!projectFound) {

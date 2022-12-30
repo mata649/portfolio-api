@@ -1,5 +1,6 @@
 import { SkillEntity } from 'portfolio/entities';
 import { CategoryRepository, SkillRepository } from 'portfolio/repositories';
+import { CreateRequest, InvalidRequest } from 'portfolio/requests';
 import {
 	ResponseSuccess,
 	ResponseFailure,
@@ -16,9 +17,16 @@ export class SkillUseCase extends BaseUseCase<SkillEntity, SkillRepository> {
 		super(skillRepository, 'skill');
 	}
 	async create(
-		skill: SkillEntity
+		request: CreateRequest<SkillEntity> | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
+		}
 		try {
+			const skill = request.value;
 			const categoryFound = await this.categoryRepository.getById(
 				skill.idCategory
 			);
@@ -32,6 +40,7 @@ export class SkillUseCase extends BaseUseCase<SkillEntity, SkillRepository> {
 
 			return new ResponseSuccess(ResponseTypes.CREATED, skillCreated);
 		} catch (error) {
+			console.log(error);
 			return new ResponseFailure(
 				ResponseTypes.SYSTEM_ERROR,
 				'system error'

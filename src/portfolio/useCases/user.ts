@@ -2,10 +2,11 @@ import { UserRepository } from '../repositories/user';
 import { ResponseFailure, ResponseSuccess, ResponseTypes } from '../response';
 import bcrypt from 'bcryptjs';
 import {
-	CreateUserRequest,
-	LoginUserRequest,
-} from 'portfolio/requests/users';
-import { InvalidRequest } from 'portfolio/requests/invalidRequest';
+	CreateRequest,
+	InvalidRequest,
+	LoginRequest,
+} from 'portfolio/requests';
+import { UserEntity } from 'portfolio/entities';
 export class UserUseCase {
 	/**
 	 * User use cases
@@ -18,14 +19,8 @@ export class UserUseCase {
 		const passwordHashed = bcrypt.hashSync(password, salt);
 		return passwordHashed;
 	}
-	/**
-	 * Creates an User in the repository and returns a response
-	 * depending if the transaction could be made successfuly or not
-	 * @param {CreateUserDto} userDto - Object with the information to create the user
-	 * @returns {Promise<ResponseSuccess | ResponseFailure>} - Response with the information of the transaction
-	 */
 	async create(
-		request: InvalidRequest | CreateUserRequest
+		request: InvalidRequest | CreateRequest<UserEntity>
 	): Promise<ResponseSuccess | ResponseFailure> {
 		if (request instanceof InvalidRequest) {
 			return new ResponseFailure(
@@ -64,7 +59,7 @@ export class UserUseCase {
 	 * @returns {Promise<ResponseSuccess | ResponseFailure>} - Response with the information of the transaction
 	 */
 	async login(
-		request: LoginUserRequest | InvalidRequest
+		request: LoginRequest | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
 		if (request instanceof InvalidRequest) {
 			return new ResponseFailure(
