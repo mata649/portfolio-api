@@ -37,20 +37,9 @@ export class baseMongoRepository<T extends { id: string }>
 	}
 
 	protected parseOrderBy(orderBy: Filters<T>['orderBy']) {
-		let args: [string, SortOrder][] = [];
-		if (orderBy.includes(',')) {
-			const params = orderBy.split(',');
-			for (const param of params) {
-				const arg = param.split('_');
-				if (arg.length === 2) {
-					args.push([arg[0], arg[1] === 'desc' ? -1 : 1]);
-				}
-			}
-			return args;
-		}
-		const arg = orderBy.split('_');
-		if (arg.length === 2) {
-			args.push([arg[0], arg[1] === 'desc' ? -1 : 1]);
+		const args: [string, SortOrder][] = [];
+		for (const order of orderBy) {
+			args.push([order.by, order.order === 'asc' ? 1 : -1]);
 		}
 		return args;
 	}
