@@ -1,8 +1,12 @@
+export interface OrderBy{
+	by:string,
+	order: 'asc' | 'desc'
+}
 export interface Filters<T> {
 	filters: Partial<T>;
 	limit: number;
 	page: number;
-	orderBy: string
+	orderBy: OrderBy[]
 }
 
 export interface Results<T> {
@@ -22,7 +26,7 @@ export const createFilters = <T>({
 	filters = {},
 	limit = 10,
 	page = 1,
-	orderBy = ''
+	orderBy = []
 }: Partial<Filters<T>>): Filters<T> => {
 
 	if (isNaN(limit)) {
@@ -31,7 +35,6 @@ export const createFilters = <T>({
 	if (isNaN(page)) {
 		page = 1;
 	}
-
 	return {
 		filters,
 		limit,
