@@ -2,6 +2,12 @@ import { PostContentEntity, PostEntity } from 'portfolio/entities';
 import { PostContentRepository, PostRepository } from 'portfolio/repositories';
 import { createFilters } from 'portfolio/repositories/';
 import {
+	CreateRequest,
+	GetPostContentBySlug,
+	InvalidRequest,
+	UpdateRequest,
+} from 'portfolio/requests';
+import {
 	ResponseFailure,
 	ResponseSuccess,
 	ResponseTypes,
@@ -17,15 +23,17 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 		super(postRepository, 'Post');
 	}
 
-	private parseSlug(slug: PostEntity['slug']): PostEntity['slug'] {
-		let parsedSlug = slug.replace(/ /g, '-');
-		parsedSlug = parsedSlug.replace(/\//ig, '-');
-		parsedSlug = parsedSlug.toLowerCase();
-		return parsedSlug;
-	}
-	async create(post: PostEntity): Promise<ResponseSuccess | ResponseFailure> {
+	async create(
+		request: CreateRequest<PostEntity> | InvalidRequest
+	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
+		}
+		const post = request.value;
 		try {
-			post.slug = this.parseSlug(post.slug);
 			const postFound = await this.baseRepository.getBySlug(post.slug);
 			if (postFound) {
 				return new ResponseFailure(
@@ -33,7 +41,6 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 					'slug already exists'
 				);
 			}
-			post.publishedDate = new Date();
 			const postUpdated = await this.baseRepository.create(post);
 
 			return new ResponseSuccess(ResponseTypes.CREATED, postUpdated);
@@ -46,8 +53,17 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 	}
 
 	async update(
-		post: Omit<PostEntity, 'publishedDate'>
+		request:
+			| UpdateRequest<Omit<PostEntity, 'publishedDate'>>
+			| InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
+		}
+		const post = request.value;
 		try {
 			const postFound = await this.baseRepository.getById(post.id);
 			if (!postFound) {
@@ -56,8 +72,6 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 					'post does not exists'
 				);
 			}
-
-			post.slug = this.parseSlug(post.slug);
 			const postFoundBySlug = await this.baseRepository.getBySlug(
 				post.slug
 			);
@@ -82,8 +96,15 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 		}
 	}
 	async getPostContentBySlug(
-		slug: PostEntity['slug']
+		request: GetPostContentBySlug | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
+		}
+		const slug = request.value;
 		try {
 			const postFound = await this.baseRepository.getBySlug(slug);
 			if (!postFound) {
@@ -104,7 +125,10 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 					'Content does not exists'
 				);
 			}
-			return new ResponseSuccess(ResponseTypes.OK, {...postContentsFound, publishedDate: postFound.publishedDate});
+			return new ResponseSuccess(ResponseTypes.OK, {
+				...postContentsFound,
+				publishedDate: postFound.publishedDate,
+			});
 		} catch (error) {
 			console.log(error);
 			return new ResponseFailure(
