@@ -1,4 +1,12 @@
-import { BaseRepository, Filters } from 'portfolio/repositories/baseRepository';
+import { BaseRepository } from 'portfolio/repositories/baseRepository';
+import {
+	CreateRequest,
+	DeleteRequest,
+	GetByIdRequest,
+	GetRequest,
+	InvalidRequest,
+	UpdateRequest,
+} from 'portfolio/requests';
 
 import {
 	ResponseFailure,
@@ -15,7 +23,16 @@ export class BaseUseCase<
 		protected itemName: string
 	) {}
 
-	async create(item: T): Promise<ResponseSuccess | ResponseFailure> {
+	async create(
+		request: CreateRequest<T> | InvalidRequest
+	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
+		}
+		const item = request.value;
 		try {
 			const itemCreated = await this.baseRepository.create(item);
 
@@ -27,9 +44,17 @@ export class BaseUseCase<
 			);
 		}
 	}
-	async get(filters: Filters<T>): Promise<ResponseSuccess | ResponseFailure> {
+	async get(
+		request: GetRequest<T> | InvalidRequest
+	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
+		}
+		const filters = request.value;
 		try {
-
 			const items = await this.baseRepository.get(filters);
 
 			return new ResponseSuccess(ResponseTypes.OK, items);
@@ -40,7 +65,16 @@ export class BaseUseCase<
 			);
 		}
 	}
-	async getById(id: T['id']): Promise<ResponseSuccess | ResponseFailure> {
+	async getById(
+		request: GetByIdRequest | InvalidRequest
+	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
+		}
+		const id = request.value;
 		try {
 			const item = await this.baseRepository.getById(id);
 			if (item) {
@@ -57,7 +91,16 @@ export class BaseUseCase<
 			);
 		}
 	}
-	async update(item: T): Promise<ResponseSuccess | ResponseFailure> {
+	async update(
+		request: UpdateRequest<T> | InvalidRequest
+	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
+		}
+		const item = request.value;
 		try {
 			const itemFound = await this.baseRepository.getById(item.id);
 			if (!itemFound) {
@@ -75,7 +118,16 @@ export class BaseUseCase<
 			);
 		}
 	}
-	async delete(id: T['id']): Promise<ResponseSuccess | ResponseFailure> {
+	async delete(
+		request: DeleteRequest | InvalidRequest
+	): Promise<ResponseSuccess | ResponseFailure> {
+		if (request instanceof InvalidRequest) {
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
+		}
+		const id = request.value;
 		try {
 			const itemFound = await this.baseRepository.getById(id);
 			if (!itemFound) {
