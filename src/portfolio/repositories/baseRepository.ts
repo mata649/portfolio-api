@@ -52,19 +52,19 @@ export interface BaseRepository<T extends { id?: string }> {
 	/**
 	 * Gets a element by id from the repository
 	 * @param id - identifier of the element to get
-	 * @returns If an element was found, returns element, else returns a null
+	 * @returns If an element was found, returns an element, else returns a null
 	 */
 	getById(id: T['id']): Promise<T | null>;
 	/**
 	 * Deletes a element by id from the repository
 	 * @param id - identifier of the element to delete
-	 * @returns If an element was deleted, returns element, else returns a null
+	 * @returns If an element was deleted, returns an element, else returns a null
 	 */
 	delete(id: T['id']): Promise<T | null>;
 	/**
 	 * Updates an element in the repository
 	 * @param item - Element to be updated in the repository
-	 * @returns If an element was updated, returns element, else returns a null
+	 * @returns If an element was updated, returns an element, else returns a null
 	 */
 	update(skill: T): Promise<T>;
 }
