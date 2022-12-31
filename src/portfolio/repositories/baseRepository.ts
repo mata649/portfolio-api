@@ -45,7 +45,7 @@ export interface BaseRepository<T extends { id?: string }> {
 	/**
 	 * Gets a list of elements from the repository
 	 * @param filters - Filters to be used in the request to the repository
-	 * @returns `Result` with the elements gotten from the repository,the total pages
+	 * @returns `Result` with the elements obtained from the repository,the total pages
 	 * and the current page.
 	 */
 	get(filters: Filters<T>): Promise<Results<T>>;
