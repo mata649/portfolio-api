@@ -48,7 +48,7 @@ export class baseMongoRepository<T extends { id: string }>
 		await itemCreated.save();
 		return this.createItemEntity(itemCreated);
 	}
-	async get(filters: Filters<T>): Promise<Results<T> | null> {
+	async get(filters: Filters<T>): Promise<Results<T>> {
 		filters.filters = this.parseFilters(filters.filters);
 		const orderBy = this.parseOrderBy(filters.orderBy);
 
