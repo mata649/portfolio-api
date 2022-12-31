@@ -10,10 +10,10 @@ export interface CategoryEntity {
 }
 
 /**
- * Returns a new `CategoryEntity`, setting proper values to
+ * Returns a new `CategoryEntity` object, setting proper values to
  * the undefined values
  * @param item - The object to create the new `CategoryEntity`
- * @returns The new `CategoryEntity`
+ * @returns The new `CategoryEntity` object
  *
  */
 export const createCategoryEntity = ({

@@ -15,10 +15,10 @@ export interface PostContentEntity {
 }
 
 /**
- * Returns a new `PostContentEntity`, setting proper values to
+ * Returns a new `PostContentEntity` object, setting proper values to
  * the undefined values
  * @param item - The object to create the new `PostContentEntity`
- * @returns The new `PostContentEntity`
+ * @returns The new `PostContentEntity` object
  *
  */
 export const createPostContentEntity = ({

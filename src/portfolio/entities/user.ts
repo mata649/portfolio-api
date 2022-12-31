@@ -11,10 +11,10 @@ export interface UserEntity {
 }
 
 /**
- * Returns a new `UserEntity`, setting proper values to
+ * Returns a new `UserEntity` object, setting proper values to
  * the undefined values
  * @param item - The object to create the new `UserEntity`
- * @returns The new `UserEntity`
+ * @returns The new `UserEntity` object
  *
  */
 export const createUserEntity = ({

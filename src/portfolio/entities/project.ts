@@ -13,10 +13,10 @@ export interface ProjectEntity {
 }
 
 /**
- * Returns a new `ProjectEntity`, setting proper values to
+ * Returns a new `ProjectEntity` object, setting proper values to
  * the undefined values
  * @param item - The object to create the new `ProjectEntity`
- * @returns The new `ProjectEntity`
+ * @returns The new `ProjectEntity` object
  *
  */
 export const createProjectEntity = ({

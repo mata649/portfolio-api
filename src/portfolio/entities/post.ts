@@ -14,9 +14,9 @@ export interface PostEntity {
 }
 
 /**
- * Returns a new `PostEntity`, setting proper values to
+ * Returns a new `PostEntity` object, setting proper values to
  * the undefined values
- * @param item - The object to create the new `PostEntity`
+ * @param item - The object to create the new `PostEntity` object
  * @returns The new `PostEntity`
  *
  */

@@ -9,10 +9,10 @@ export interface SkillEntity {
 }
 
 /**
- * Returns a new `SkillEntity`, setting proper values to
+ * Returns a new `SkillEntity` object, setting proper values to
  * the undefined values
  * @param item - The object to create the new `SkillEntity`
- * @returns The new `SkillEntity`
+ * @returns The new `SkillEntity` object
  *
  */
 export const createSkillEntity = ({
