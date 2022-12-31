@@ -63,7 +63,7 @@ export interface BaseRepository<T extends { id?: string }> {
 	delete(id: T['id']): Promise<T | null>;
 	/**
 	 * Updates an element in the repository
-	 * @param item - Element to be created in the repository
+	 * @param item - Element to be updated in the repository
 	 * @returns If an element was updated, returns element else returns a null
 	 */
 	update(skill: T): Promise<T>;
