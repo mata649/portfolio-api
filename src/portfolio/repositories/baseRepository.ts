@@ -33,7 +33,7 @@ export interface Results<T> {
 }
 /**
  * Interface representing the common methods needed by any repository
- * @typeParam T- Type of object used in the methods
+ * @typeParam T - Type of object used in the methods
  */
 export interface BaseRepository<T extends { id?: string }> {
 	/**
