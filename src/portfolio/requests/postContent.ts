@@ -9,20 +9,20 @@ import {
 
 export class PostContentRequest extends BaseRequest<PostContentEntity> {
 	create = (
-		postContent: PostContentEntity
+		item: PostContentEntity
 	): InvalidRequest | CreateRequest<PostContentEntity> => {
 		let invalidRequest = new InvalidRequest();
 		const allowedLanguages = Object.values(Languages);
-		invalidRequest = this.validateEmptyFields(postContent, invalidRequest, [
+		invalidRequest = this.validateEmptyFields(item, invalidRequest, [
 			'language',
 			'id',
 		]);
-		if (postContent.language === Languages.NONE) {
+		if (item.language === Languages.NONE) {
 			invalidRequest.addError({
 				error: 'language',
 				parameter: 'language empty',
 			});
-		} else if (!allowedLanguages.includes(postContent.language)) {
+		} else if (!allowedLanguages.includes(item.language)) {
 			invalidRequest.addError({
 				error: 'language',
 				parameter: `language is not accepted, language must to be ${allowedLanguages.join(
@@ -33,23 +33,23 @@ export class PostContentRequest extends BaseRequest<PostContentEntity> {
 		if (invalidRequest.hasErrors()) {
 			return invalidRequest;
 		}
-		return new CreateRequest(postContent);
+		return new CreateRequest(item);
 	};
 	update(
-		postContent: PostContentEntity
+		item: PostContentEntity
 	): InvalidRequest | UpdateRequest<PostContentEntity> {
 		let invalidRequest = new InvalidRequest();
 		const allowedLanguages = Object.values(Languages);
-		invalidRequest = this.validateEmptyFields(postContent, invalidRequest, [
+		invalidRequest = this.validateEmptyFields(item, invalidRequest, [
 			'language',
 		]);
 
-		if (postContent.language === Languages.NONE) {
+		if (item.language === Languages.NONE) {
 			invalidRequest.addError({
 				error: 'language',
 				parameter: 'language empty',
 			});
-		} else if (!allowedLanguages.includes(postContent.language)) {
+		} else if (!allowedLanguages.includes(item.language)) {
 			invalidRequest.addError({
 				error: 'language',
 				parameter: `language is not accepted, language must to be ${allowedLanguages.join(
@@ -60,6 +60,6 @@ export class PostContentRequest extends BaseRequest<PostContentEntity> {
 		if (invalidRequest.hasErrors()) {
 			return invalidRequest;
 		}
-		return new UpdateRequest(postContent)
+		return new UpdateRequest(item)
 	}
 }

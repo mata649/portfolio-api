@@ -8,26 +8,26 @@ import {
 
 export class SkillRequest extends BaseRequest<SkillEntity> {
 	create = (
-		skill: SkillEntity
+		item: SkillEntity
 	): CreateRequest<SkillEntity> | InvalidRequest => {
 		let invalidRequest = new InvalidRequest();
-		invalidRequest = this.validateEmptyFields(skill, invalidRequest,['id']);
+		invalidRequest = this.validateEmptyFields(item, invalidRequest, ['id']);
 		if (invalidRequest.hasErrors()) {
 			return invalidRequest;
 		}
 
-		return new CreateRequest(skill);
+		return new CreateRequest(item);
 	};
 
 	update = (
-		skill: SkillEntity
+		item: SkillEntity
 	): InvalidRequest | UpdateRequest<SkillEntity> => {
 		let invalidRequest = new InvalidRequest();
-		invalidRequest = this.validateEmptyFields(skill, invalidRequest);
+		invalidRequest = this.validateEmptyFields(item, invalidRequest);
 
 		if (invalidRequest.hasErrors()) {
 			return invalidRequest;
 		}
-		return new UpdateRequest(skill);
+		return new UpdateRequest(item);
 	};
 }

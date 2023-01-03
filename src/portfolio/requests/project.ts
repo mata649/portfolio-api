@@ -7,26 +7,31 @@ import {
 } from './request';
 
 export class ProjectRequest extends BaseRequest<ProjectEntity> {
+	/**
+	 *  Checks if a string is a valid GitHub URL
+	 * @param color - String to validate
+	 * @returns If the string is a valid GitHub URL, returns `true`, else `false`
+	 */
 	isValidGithubUrl = (githubUrl: string) => {
 		const githubUrlRegex = /https:\/\/github\.com\/.*\/.*/;
 		return githubUrlRegex.test(githubUrl);
 	};
 
 	create = (
-		project: ProjectEntity
+		item: ProjectEntity
 	): InvalidRequest | CreateRequest<ProjectEntity> => {
 		let invalidRequest = new InvalidRequest();
 
-		invalidRequest = this.validateEmptyFields(project, invalidRequest, [
+		invalidRequest = this.validateEmptyFields(item, invalidRequest, [
 			'id',
 			'githubUrl',
 		]);
-		if (project.githubUrl.length < 1) {
+		if (item.githubUrl.length < 1) {
 			invalidRequest.addError({
 				error: 'githubUrl empty',
 				parameter: 'githubUrl',
 			});
-		} else if (!this.isValidGithubUrl(project.githubUrl)) {
+		} else if (!this.isValidGithubUrl(item.githubUrl)) {
 			invalidRequest.addError({
 				error: 'the url provided is not a valid github url',
 				parameter: 'githubUrl',
@@ -37,22 +42,22 @@ export class ProjectRequest extends BaseRequest<ProjectEntity> {
 			return invalidRequest;
 		}
 
-		return new CreateRequest(project);
+		return new CreateRequest(item);
 	};
 	update = (
-		project: ProjectEntity
+		item: ProjectEntity
 	): InvalidRequest | UpdateRequest<ProjectEntity> => {
 		let invalidRequest = new InvalidRequest();
 
-		invalidRequest = this.validateEmptyFields(project, invalidRequest, [
+		invalidRequest = this.validateEmptyFields(item, invalidRequest, [
 			'githubUrl',
 		]);
-		if (project.githubUrl.length < 1) {
+		if (item.githubUrl.length < 1) {
 			invalidRequest.addError({
 				error: 'githubUrl empty',
 				parameter: 'githubUrl',
 			});
-		} else if (!this.isValidGithubUrl(project.githubUrl)) {
+		} else if (!this.isValidGithubUrl(item.githubUrl)) {
 			invalidRequest.addError({
 				error: 'the url provided is not a valid github url',
 				parameter: 'githubUrl',
@@ -63,6 +68,6 @@ export class ProjectRequest extends BaseRequest<ProjectEntity> {
 			return invalidRequest;
 		}
 
-		return new CreateRequest(project);
+		return new CreateRequest(item);
 	};
 }
