@@ -6,7 +6,9 @@ import {
 	InvalidRequest,
 	UpdateRequest,
 } from './request';
-
+/**
+ * Class used to validate the Post's content requests
+ */
 export class PostContentRequest extends BaseRequest<PostContentEntity> {
 	create = (
 		item: PostContentEntity

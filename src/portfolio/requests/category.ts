@@ -6,7 +6,7 @@ import {
 	UpdateRequest,
 } from './request';
 /**
- * Class used to validate the Category's request
+ * Class used to validate the category's request
  */
 export class CategoryRequest extends BaseRequest<CategoryEntity> {
 	/**

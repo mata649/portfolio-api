@@ -7,7 +7,9 @@ import { CreateRequest, InvalidRequest } from './request';
 export class LoginRequest {
 	constructor(public value: UserEntity) {}
 }
-
+/**
+ * Class used to validate the user's requests
+ */
 export class UserRequest {
 	/**
 	 *  Validates if a string is a valid email

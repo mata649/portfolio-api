@@ -5,7 +5,9 @@ import {
 	InvalidRequest,
 	UpdateRequest,
 } from './request';
-
+/**
+ * Class used to validate the project's requests
+ */
 export class ProjectRequest extends BaseRequest<ProjectEntity> {
 	/**
 	 *  Checks if a string is a valid GitHub URL

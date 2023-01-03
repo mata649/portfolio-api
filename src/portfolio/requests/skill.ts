@@ -5,7 +5,9 @@ import {
 	InvalidRequest,
 	UpdateRequest,
 } from './request';
-
+/**
+ * Class used to validate the skill's requests
+ */
 export class SkillRequest extends BaseRequest<SkillEntity> {
 	create = (
 		item: SkillEntity
