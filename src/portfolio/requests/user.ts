@@ -10,7 +10,7 @@ export class LoginRequest {
 
 export class UserRequest {
 	/**
-	 *  Validates if a string is a email
+	 *  Validates if a string is a valid email
 	 * @param color - String to validate
 	 * @returns If the string is a valid email, returns `true`, else `false`
 	 */
