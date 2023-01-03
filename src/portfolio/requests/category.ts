@@ -16,17 +16,17 @@ export class CategoryRequest extends BaseRequest<CategoryEntity> {
 		return argbRegex.test(color);
 	};
 	create = (
-		category: CategoryEntity
+		item: CategoryEntity
 	): CreateRequest<CategoryEntity> | InvalidRequest => {
 		let invalidRequest = new InvalidRequest();
-		invalidRequest = this.validateEmptyFields(category, invalidRequest,['id','color']);
+		invalidRequest = this.validateEmptyFields(item, invalidRequest,['id','color']);
 
-		if (category.color.length < 1) {
+		if (item.color.length < 1) {
 			invalidRequest.addError({
 				error: 'color empty',
 				parameter: 'color',
 			});
-		}else if (!this.isValidARGB(category.color) || !this.isValidRGB) {
+		}else if (!this.isValidARGB(item.color) || !this.isValidRGB) {
 			invalidRequest.addError({
 				error: 'color format is incorrect',
 				parameter: 'color',
@@ -37,20 +37,20 @@ export class CategoryRequest extends BaseRequest<CategoryEntity> {
 			return invalidRequest;
 		}
 
-		return new CreateRequest(category);
+		return new CreateRequest(item);
 	};
 
 	update = (
-		category: CategoryEntity
+		item: CategoryEntity
 	): InvalidRequest | UpdateRequest<CategoryEntity> => {
 		let invalidRequest = new InvalidRequest();
-		invalidRequest = this.validateEmptyFields(category, invalidRequest, ['color'])
-		if (category.color.length < 1) {
+		invalidRequest = this.validateEmptyFields(item, invalidRequest, ['color'])
+		if (item.color.length < 1) {
 			invalidRequest.addError({
 				error: 'color empty',
 				parameter: 'color',
 			});
-		}else if (!this.isValidARGB(category.color) || !this.isValidRGB) {
+		}else if (!this.isValidARGB(item.color) || !this.isValidRGB) {
 			invalidRequest.addError({
 				error: 'color format is incorrect',
 				parameter: 'color',
@@ -61,6 +61,6 @@ export class CategoryRequest extends BaseRequest<CategoryEntity> {
 			return invalidRequest;
 		}
 
-		return new UpdateRequest(category);
+		return new UpdateRequest(item);
 	};
 }
