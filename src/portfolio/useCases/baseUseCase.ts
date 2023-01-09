@@ -13,16 +13,30 @@ import {
 	ResponseSuccess,
 	ResponseTypes,
 } from 'portfolio/response';
-
+/**
+ * Provides basic CRUD functionality for a repository of items of type T.
+ * @typeParam T - An item type with an id field.
+ * @typeParam TRepository - A repository of items of type T.
+ */
 export class BaseUseCase<
 	T extends { id?: string },
 	TRepository extends BaseRepository<T>
 > {
+	/**
+	 * Constructs a new BaseUseCase.
+	 * @param baseRepository An instance of a repository of items of type T.
+	 * @param itemName The name of the items in the repository (e.g. 'user').
+	 */
 	constructor(
 		protected readonly baseRepository: TRepository,
 		protected itemName: string
 	) {}
 
+	/**
+	 * Creates a new item in the repository.
+	 * @param request A CreateRequest object containing the item to create or an InvalidRequest object if the request is invalid.
+	 * @returns A ResponseSuccess object with the created item if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async create(
 		request: CreateRequest<T> | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
@@ -44,6 +58,11 @@ export class BaseUseCase<
 			);
 		}
 	}
+	/**
+	 * Retrieves a list of items from the repository.
+	 * @param request A GetRequest object containing filters for the items to retrieve or an InvalidRequest object if the request is invalid.
+	 * @returns A ResponseSuccess object with the list of items if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async get(
 		request: GetRequest<T> | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
@@ -65,6 +84,11 @@ export class BaseUseCase<
 			);
 		}
 	}
+	/**
+	 * Retrieves a single item from the repository by its id.
+	 * @param request A GetByIdRequest object containing the id of the item to retrieve or an InvalidRequest object if the request is invalid.
+	 * @returns A ResponseSuccess object with the item if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async getById(
 		request: GetByIdRequest | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
@@ -91,6 +115,11 @@ export class BaseUseCase<
 			);
 		}
 	}
+	/**
+	 * Updates an existing item in the repository.
+	 * @param request An UpdateRequest object containing the updated item or an InvalidRequest object if the request is invalid.
+	 * @returns A ResponseSuccess object with the updated item if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async update(
 		request: UpdateRequest<T> | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
@@ -118,6 +147,11 @@ export class BaseUseCase<
 			);
 		}
 	}
+	/**
+	 * Removes an existing item from the repository.
+	 * @param request A DeleteRequest object containing the id of the item to delete or an InvalidRequest object if the request is invalid.
+	 * @returns A ResponseSuccess object with a message if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async delete(
 		request: DeleteRequest | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
