@@ -12,18 +12,30 @@ import {
 } from 'portfolio/response';
 
 import { BaseUseCase } from './baseUseCase';
-
+/**
+ * Provides CRUD functionality for a repository of projectt.
+ * @extends BaseUseCase<ProjectEntity, ProjectRepository>
+ */
 export class ProjectUseCase extends BaseUseCase<
 	ProjectEntity,
 	ProjectRepository
 > {
+	/**
+	 * Constructs a new ProjectUseCase.
+	 * @param projectRepository An instance of a repository of projects.
+	 * @param categoryRepository An instance of a repository of categories.
+	 */
 	constructor(
 		projectRepository: ProjectRepository,
 		protected readonly categoryRepository: CategoryRepository
 	) {
 		super(projectRepository, 'project');
 	}
-
+	/**
+	 * Creates a new project in the repository.
+	 * @param request A CreateRequest object containing the project to create or an InvalidRequest object if the request is invalid.
+	 * @returns A ResponseSuccess object with the created project if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async create(
 		request: CreateRequest<ProjectEntity> | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
@@ -55,6 +67,11 @@ export class ProjectUseCase extends BaseUseCase<
 			);
 		}
 	}
+	/**
+	 * Updates an existing project in the repository.
+	 * @param request An UpdateRequest object containing the updated project or an InvalidRequest object if the request is invalid.
+	 * @returns A ResponseSuccess object with the updated project if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async update(
 		request: UpdateRequest<ProjectEntity> | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {

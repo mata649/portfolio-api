@@ -9,16 +9,25 @@ import {
 import { UserEntity } from 'portfolio/entities';
 export class UserUseCase {
 	/**
-	 * User use cases
-	 * @param {UserRepository} userRepository - The user repository that the use cases will use
+	 * Constructs a new UserUseCase.
+	 * @param userRepository - A repository of user entities.
 	 */
 	constructor(private readonly userRepository: UserRepository) {}
-
+	/**
+	 * Hashes a password using bcrypt.
+	 * @param password - The password to hash.
+	 * @returns The hashed password.
+	 */
 	private hashPassword(password: string): string {
 		const salt = bcrypt.genSaltSync();
 		const passwordHashed = bcrypt.hashSync(password, salt);
 		return passwordHashed;
 	}
+	/**
+	 * Creates a new user in the repository.
+	 * @param request - A CreateRequest object containing the user to create or an InvalidRequest object if the request is invalid.
+	 * @returns A ResponseSuccess object with the created user if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async create(
 		request: InvalidRequest | CreateRequest<UserEntity>
 	): Promise<ResponseSuccess | ResponseFailure> {

@@ -4,7 +4,11 @@ import {
 	PostContentRepository,
 	PostRepository,
 } from 'portfolio/repositories';
-import { CreateRequest, InvalidRequest, UpdateRequest } from 'portfolio/requests';
+import {
+	CreateRequest,
+	InvalidRequest,
+	UpdateRequest,
+} from 'portfolio/requests';
 import {
 	ResponseFailure,
 	ResponseSuccess,
@@ -12,18 +16,31 @@ import {
 } from 'portfolio/response';
 
 import { BaseUseCase } from './baseUseCase';
-
+/**
+ * Provides CRUD functionality for a repository of post content.
+ * @extends BaseUseCase<PostContentEntity, PostContentRepository>
+ */
 export class PostContentUseCase extends BaseUseCase<
 	PostContentEntity,
 	PostContentRepository
 > {
+	/**
+	 * Constructs a new PostContentUseCase.
+	 * @param postContentRepository An instance of a repository of post contents.
+	 * @param postRepository An instance of a repository of posts.
+	 */
 	constructor(
 		postContentRepository: PostContentRepository,
-		protected readonly postRepository: PostRepository
+		protected postRepository: PostRepository
 	) {
 		super(postContentRepository, 'Post content');
 	}
-
+	/**
+	 * Check if a given postContent object has already been written in the specified language.
+	 *
+	 * @param postContent The postContent object to check.
+	 * @returns A boolean indicating whether the language of the given postContent object has already been written.
+	 */
 	private async theLanguageIsAlreadyWritten(
 		postContent: PostContentEntity
 	): Promise<boolean> {
@@ -38,14 +55,21 @@ export class PostContentUseCase extends BaseUseCase<
 		);
 		return listFiltered ? listFiltered.length > 0 : false;
 	}
-
+	/**
+	 * Creates a new post content in the repository.
+	 * @param request A CreateRequest object containing the new post content or an InvalidRequest object if the request is invalid.
+	 * @returns A ResponseSuccess object with the new post content if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async create(
-		request:CreateRequest<PostContentEntity>|InvalidRequest
+		request: CreateRequest<PostContentEntity> | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
 		if (request instanceof InvalidRequest) {
-			return new ResponseFailure(ResponseTypes.BAD_REQUEST,request.errors)
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
 		}
-		const postContent = request.value
+		const postContent = request.value;
 		try {
 			//Check if post exists
 			const postFound = await this.postRepository.getById(
@@ -80,13 +104,22 @@ export class PostContentUseCase extends BaseUseCase<
 			);
 		}
 	}
+
+	/**
+	 * Updates an existing post content in the repository.
+	 * @param request An UpdateRequest object containing the updated post content or an InvalidRequest object if the request is invalid.
+	 * @returns A ResponseSuccess object with the updated post content if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async update(
 		request: UpdateRequest<PostContentEntity> | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
 		if (request instanceof InvalidRequest) {
-			return new ResponseFailure(ResponseTypes.BAD_REQUEST, request.errors)
+			return new ResponseFailure(
+				ResponseTypes.BAD_REQUEST,
+				request.errors
+			);
 		}
-		const postContent = request.value
+		const postContent = request.value;
 		try {
 			// Check if postContent exists
 			const postContentFound = await this.baseRepository.getById(

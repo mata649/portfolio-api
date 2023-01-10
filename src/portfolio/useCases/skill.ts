@@ -8,14 +8,27 @@ import {
 } from 'portfolio/response';
 
 import { BaseUseCase } from './baseUseCase';
-
+/**
+ * Provides CRUD functionality for a repository of skills.
+ * @extends BaseUseCase<SkillEntity, SkillRepository>
+ */
 export class SkillUseCase extends BaseUseCase<SkillEntity, SkillRepository> {
+	/**
+	 * Constructs a new SkillUseCase.
+	 * @param skillRepository An instance of a repository of skills.
+	 * @param categoryRepository An instance of a repository of categories.
+	 */
 	constructor(
 		skillRepository: SkillRepository,
 		private categoryRepository: CategoryRepository
 	) {
 		super(skillRepository, 'skill');
 	}
+	/**
+	 * Creates a new skill in the repository.
+	 * @param request A CreateRequest object containing the skill to create or an InvalidRequest object if the request is invalid.
+	 * @returns A ResponseSuccess object with the created skill if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async create(
 		request: CreateRequest<SkillEntity> | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
@@ -47,6 +60,10 @@ export class SkillUseCase extends BaseUseCase<SkillEntity, SkillRepository> {
 			);
 		}
 	}
+	/**
+	 * Retrieves a list of skills sorted by category.
+	 * @returns A ResponseSuccess object with the list of skills if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async getSkillsByCategory(): Promise<ResponseSuccess | ResponseFailure> {
 		try {
 			const skillsByCategory =

@@ -15,14 +15,27 @@ import {
 
 import { BaseUseCase } from './baseUseCase';
 
+/**
+ * Provides CRUD functionality for a repository of posts.
+ * @extends BaseUseCase<PostEntity, PostRepository>
+ */
 export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
+	/**
+	 * Constructs a new PostUseCase.
+	 * @param postRepository An instance of a repository of posts.
+	 * @param postContentRepository An instance of a repository of post contents.
+	 */
 	constructor(
 		postRepository: PostRepository,
 		private postContentRepository: PostContentRepository
 	) {
 		super(postRepository, 'Post');
 	}
-
+	/**
+	 * Creates a new post in the repository.
+	 * @param request A CreateRequest object containing the new post or an InvalidRequest object if the request is invalid.
+	 * @returns A ResponseSuccess object with the new post if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async create(
 		request: CreateRequest<PostEntity> | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
@@ -51,7 +64,11 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 			);
 		}
 	}
-
+	/**
+	 * Updates an existing post in the repository.
+	 * @param request An UpdateRequest object containing the updated post or an InvalidRequest object if the request is invalid.
+	 * @returns A ResponseSuccess object with the updated post if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async update(
 		request:
 			| UpdateRequest<Omit<PostEntity, 'publishedDate'>>
@@ -95,6 +112,11 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 			);
 		}
 	}
+	/**
+	 * Gets the post content for a post with a given slug.
+	 * @param request A GetPostContentBySlug object containing the slug or an InvalidRequest object if the request is invalid.
+	 * @returns A ResponseSuccess object with the post content if the operation is successful, or a ResponseFailure object with an error message if it fails.
+	 */
 	async getPostContentBySlug(
 		request: GetPostContentBySlug | InvalidRequest
 	): Promise<ResponseSuccess | ResponseFailure> {
