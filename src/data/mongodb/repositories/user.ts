@@ -4,7 +4,6 @@ import { UserModel } from 'data/mongodb/models';
 import { Document } from 'mongoose';
 /**
  *Repository for interacting with User entities in MongoDB
- *@implements UserRepository - for User specific repository functions
  */
 export class UserMongoRepository implements UserRepository {
 	private userModel = UserModel;

@@ -10,7 +10,6 @@ import {
 import { BaseUseCase } from './baseUseCase';
 /**
  * Provides CRUD functionality for a repository of skills.
- * @extends BaseUseCase<SkillEntity, SkillRepository>
  */
 export class SkillUseCase extends BaseUseCase<SkillEntity, SkillRepository> {
 	/**

@@ -4,8 +4,6 @@ import { SkillModel } from 'data/mongodb/models/';
 import { SkillByCategory, SkillRepository } from 'portfolio/repositories';
 /**
  *Repository for interacting with Skill entities in MongoDB
- *@extends baseMongoRepository - for basic CRUD functionality
- *@implements SkillRepository - for Skill specific repository functions
  */
 export class SkillMongoRepository
 	extends baseMongoRepository<SkillEntity>

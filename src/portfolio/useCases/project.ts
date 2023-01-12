@@ -13,8 +13,7 @@ import {
 
 import { BaseUseCase } from './baseUseCase';
 /**
- * Provides CRUD functionality for a repository of projectt.
- * @extends BaseUseCase<ProjectEntity, ProjectRepository>
+ * Provides CRUD functionality for a repository of project.
  */
 export class ProjectUseCase extends BaseUseCase<
 	ProjectEntity,

@@ -17,7 +17,6 @@ import { BaseUseCase } from './baseUseCase';
 
 /**
  * Provides CRUD functionality for a repository of posts.
- * @extends BaseUseCase<PostEntity, PostRepository>
  */
 export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 	/**

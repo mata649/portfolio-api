@@ -4,8 +4,6 @@ import { PostModel } from 'data/mongodb/models/';
 import { PostRepository } from 'portfolio/repositories';
 /**
  *Repository for interacting with Post entities in MongoDB
- *@extends baseMongoRepository - for basic CRUD functionality
- *@implements PostRepository - for Post specific repository functions
  */
 export class PostMongoRepository
 	extends baseMongoRepository<PostEntity>

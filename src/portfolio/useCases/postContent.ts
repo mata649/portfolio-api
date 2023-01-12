@@ -18,7 +18,6 @@ import {
 import { BaseUseCase } from './baseUseCase';
 /**
  * Provides CRUD functionality for a repository of post content.
- * @extends BaseUseCase<PostContentEntity, PostContentRepository>
  */
 export class PostContentUseCase extends BaseUseCase<
 	PostContentEntity,

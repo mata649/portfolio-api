@@ -8,6 +8,15 @@ export interface JwtPayload {
 }
 
 const config = Config.loadConfig();
+
+/**
+ * Generates a JWT token
+
+ * @param id - id of the user
+ * @param name - name of the user
+ * @returns Returns a promise that resolves with the JWT token or
+ *      rejected if there is an error
+ */
 export const generateJWT = (id: UserEntity['id'], name: UserEntity['name']) => {
 	return new Promise((resolve, reject) => {
 		const payload: JwtPayload = { id, name };
