@@ -92,7 +92,7 @@ export abstract class BaseRequest<T extends { id: string }> {
 	 * ```
 	 */
 	protected parseOrderBy(orderBy: string): OrderBy[] {
-		let args: OrderBy[] = [];
+		const args: OrderBy[] = [];
 		if (orderBy === undefined) {
 			return args;
 		}
@@ -168,8 +168,8 @@ export abstract class BaseRequest<T extends { id: string }> {
 	 */
 	get = (
 		filters: Partial<T>,
-		limit: number = 10,
-		page: number = 1,
+		limit = 10,
+		page = 1,
 		orderBy: string
 	): GetRequest<T> | InvalidRequest => {
 		const invalidRequest = new InvalidRequest();

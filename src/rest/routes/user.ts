@@ -10,8 +10,5 @@ const userCtrl = new UserController(userRepository);
 
 router.post('/', userCtrl.create);
 
-router.post(
-	'/auth',
-	userCtrl.login
-);
+router.post('/auth', userCtrl.login);
 export { router as userRouter };

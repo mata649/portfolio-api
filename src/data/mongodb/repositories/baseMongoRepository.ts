@@ -29,6 +29,7 @@ export class baseMongoRepository<T extends { id: string }>
 	protected createItemEntity(
 		item:
 			| (Document<unknown, any, T> & T)
+			// eslint-disable-next-line @typescript-eslint/ban-types
 			| HydratedDocument<T, {}, {}>
 			| null
 	): T {
