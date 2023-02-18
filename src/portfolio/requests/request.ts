@@ -35,7 +35,7 @@ export class GetRequest<T> {
 /**
  * Interface representing an error of the request
  */
-interface RequestError {
+export interface RequestError {
 	/**
 	 * Parameter name
 	 */
