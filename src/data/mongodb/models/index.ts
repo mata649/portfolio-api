@@ -1,6 +1,0 @@
-export * from './User'
-export * from './Skill'
-export * from './Category'
-export * from './Project'
-export * from './Post'
-export * from './PostContent'
