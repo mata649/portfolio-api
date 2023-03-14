@@ -41,7 +41,7 @@ export class CategoryRequest extends BaseRequest<CategoryEntity> {
 				error: 'color empty',
 				parameter: 'color',
 			});
-		} else if (!this.isValidARGB(item.color) || !this.isValidRGB) {
+		} else if (!this.isValidARGB(item.color) || !this.isValidRGB(item.color)) {
 			invalidRequest.addError({
 				error: 'color format is incorrect',
 				parameter: 'color',
