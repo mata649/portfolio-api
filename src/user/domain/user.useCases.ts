@@ -43,7 +43,7 @@ export class UserUseCase {
 		try {
 			if (await this.userRepository.getByEmail(user.email)) {
 				return new ResponseFailure(
-					ResponseTypes.RESOURCE_ERROR,
+					ResponseTypes.CONFLICT,
 					'email already registered'
 				);
 			}

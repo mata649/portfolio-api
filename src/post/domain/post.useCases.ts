@@ -48,7 +48,7 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 			const postFound = await this.baseRepository.getBySlug(post.slug);
 			if (postFound) {
 				return new ResponseFailure(
-					ResponseTypes.RESOURCE_ERROR,
+					ResponseTypes.CONFLICT,
 					'slug already exists'
 				);
 			}
@@ -92,7 +92,7 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 			);
 			if (postFoundBySlug && post.id !== postFoundBySlug.id) {
 				return new ResponseFailure(
-					ResponseTypes.RESOURCE_ERROR,
+					ResponseTypes.CONFLICT,
 					'slug already exists'
 				);
 			}
@@ -130,7 +130,7 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 			if (!postFound) {
 				return new ResponseFailure(
 					ResponseTypes.RESOURCE_ERROR,
-					'Post does not exists'
+					'post does not exists'
 				);
 			}
 
@@ -142,7 +142,7 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 			if (!postContentsFound || postContentsFound.data.length < 0) {
 				return new ResponseFailure(
 					ResponseTypes.RESOURCE_ERROR,
-					'Content does not exists'
+					'content does not exists'
 				);
 			}
 			return new ResponseSuccess(ResponseTypes.OK, {
