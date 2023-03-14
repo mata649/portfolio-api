@@ -343,6 +343,14 @@ describe('BaseRequest', () => {
 				expect(result.errors[0].parameter).toEqual('invalidField');
 			}
 		});
+		test('should return a GetRequest with default values when limit and page are undefined', () => {
+			const result = baseRequestImpl.get({}, undefined, undefined, '');
+			expect(result).toBeInstanceOf(GetRequest);
+			if (result instanceof GetRequest) {
+				expect(result.value.limit).toEqual(10)
+				expect(result.value.page).toEqual(1)
+			}
+		});
 	});
 	describe('getById', () => {
 		test('should return an InvalidRequest object when id is undefined', () => {
