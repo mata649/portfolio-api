@@ -82,7 +82,7 @@ export class PostContentUseCase extends BaseUseCase<
 			// Check if a postContent with the designed language was created previously
 			if (await this.theLanguageIsAlreadyWritten(postContent)) {
 				return new ResponseFailure(
-					ResponseTypes.RESOURCE_ERROR,
+					ResponseTypes.CONFLICT,
 					'the content was already written in this language'
 				);
 			}
@@ -144,7 +144,7 @@ export class PostContentUseCase extends BaseUseCase<
 				postContentFound.language !== postContent.language
 			) {
 				return new ResponseFailure(
-					ResponseTypes.RESOURCE_ERROR,
+					ResponseTypes.CONFLICT,
 					'the content was already written in this language'
 				);
 			}
