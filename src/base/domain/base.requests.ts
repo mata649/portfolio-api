@@ -91,7 +91,7 @@ export abstract class BaseRequest<T extends { id: string }> {
 	 * parseOrderBy('name_asc,age_desc)
 	 * ```
 	 */
-	protected parseOrderBy(orderBy: string): OrderBy[] {
+	public parseOrderBy(orderBy: string): OrderBy[] {
 		const args: OrderBy[] = [];
 		if (orderBy === undefined) {
 			return args;
@@ -114,7 +114,7 @@ export abstract class BaseRequest<T extends { id: string }> {
 	 * @param exceptions - List of properties to avoid checking
 	 * @returns Returns the invalid request with the errors added if some property is empty
 	 */
-	protected validateEmptyFields(
+	public validateEmptyFields(
 		item: T,
 		invalidRequest: InvalidRequest,
 		exceptions: string[] = []
@@ -223,6 +223,6 @@ export abstract class BaseRequest<T extends { id: string }> {
 		if (invaldiRequest.hasErrors()) {
 			return invaldiRequest;
 		}
-		return new DeleteRequest(id);
+		return new GetByIdRequest(id);
 	};
 }
