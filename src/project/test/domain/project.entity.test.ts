@@ -1,4 +1,5 @@
-import { createProjectEntity } from 'portfolio/entities';
+import { createProjectEntity } from "@/project/domain";
+
 
 describe('createProjectEntity', () => {
 	it('creates a ProjectEntity object with default values if no parameters are provided', () => {

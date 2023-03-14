@@ -1,7 +1,4 @@
-import {
-	CategoryEntity,
-	createCategoryEntity,
-} from 'portfolio/entities';
+import { CategoryEntity, createCategoryEntity } from "@/category/domain";
 
 describe('createCategoryEntity', () => {
 	it('creates a new CategoryEntity object with default values', () => {

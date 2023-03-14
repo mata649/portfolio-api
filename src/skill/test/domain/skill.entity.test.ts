@@ -1,4 +1,5 @@
-import { createSkillEntity } from 'portfolio/entities';
+import { createSkillEntity } from "@/skill/domain";
+
 
 describe('createSkillEntity', () => {
 	it('creates a SkillEntity object with default values if no parameters are provided', () => {

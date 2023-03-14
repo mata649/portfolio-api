@@ -1,4 +1,4 @@
-import { PostEntity, createPostEntity } from 'portfolio/entities';
+import { createPostEntity, PostEntity } from "@/post/domain";
 
 describe('createPostEntity', () => {
 	it('creates a new PostEntity object with default values', () => {

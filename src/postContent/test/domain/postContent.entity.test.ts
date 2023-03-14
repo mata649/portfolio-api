@@ -1,8 +1,5 @@
-import {
-	PostContentEntity,
-	createPostContentEntity,
-	Languages,
-} from 'portfolio/entities';
+import { createPostContentEntity, Languages, PostContentEntity } from "@/postContent/domain";
+
 
 describe('createPostContentEntity', () => {
 	it('creates a new PostContentEntity object with default values', () => {

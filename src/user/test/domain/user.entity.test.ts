@@ -1,4 +1,4 @@
-import { createUserEntity } from 'portfolio/entities';
+import { createUserEntity } from '@/user/domain';
 
 describe('createUserEntity', () => {
 	it('creates a UserEntity object with default values if no parameters are provided', () => {
