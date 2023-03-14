@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { ResponseTypes } from '@/base/domain/response';
 
-import { generateJWT } from 'server/auth/jwt';
+import { generateJWT } from '@/server/auth/jwt';
 import {
 	createUserEntity,
 	UserEntity,
