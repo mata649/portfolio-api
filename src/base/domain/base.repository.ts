@@ -66,7 +66,7 @@ export interface BaseRepository<T extends { id?: string }> {
 	 * @param item - Element to be updated in the repository
 	 * @returns If an element was updated, returns an element, else returns a null
 	 */
-	update(skill: T): Promise<T>;
+	update(item: T): Promise<T>;
 }
 
 /**
