@@ -172,7 +172,7 @@ export class BaseUseCase<
 		} catch (error) {
 			return new ResponseFailure(
 				ResponseTypes.SYSTEM_ERROR,
-				'system errors'
+				'system error'
 			);
 		}
 	}
