@@ -1,5 +1,5 @@
-import { UserEntity } from 'user/domain/user.entity';
-import { Config } from 'config';
+import { UserEntity } from '@/user/domain/user.entity';
+import { Config } from '@/config';
 
 import jwt from 'jsonwebtoken';
 export interface JwtPayload {
