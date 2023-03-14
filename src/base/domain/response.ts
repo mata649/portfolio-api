@@ -4,6 +4,7 @@ export enum ResponseTypes {
 	BAD_REQUEST = 400,
 	INVALID_CREDENTIALS = 401,
 	RESOURCE_ERROR = 404,
+	CONFLICT = 409,
 	SYSTEM_ERROR = 500,
 }
 
