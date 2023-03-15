@@ -18,7 +18,7 @@ export class PostRequest extends BaseRequest<PostEntity> {
 	 * @param slug - Slug to parse
 	 * @returns The slug parsed
 	 */
-	private parseSlug(slug: PostEntity['slug']): PostEntity['slug'] {
+	public parseSlug(slug: PostEntity['slug']): PostEntity['slug'] {
 		let parsedSlug = slug.replace(/ /g, '-');
 		parsedSlug = parsedSlug.replace(/\//gi, '-');
 		parsedSlug = parsedSlug.toLowerCase();
