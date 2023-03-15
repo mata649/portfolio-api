@@ -325,7 +325,7 @@ describe('BaseUseCase', () => {
 			repositoryMock.delete.mockResolvedValue(expectedObject);
 
 			const result = await baseUseCase.delete(deleteRequest);
-			console.log(result);
+
 			expect(result).toBeInstanceOf(ResponseSuccess);
 			expect(result.type).toEqual(ResponseTypes.OK);
 			expect(result.value).toEqual(expectedObject);
