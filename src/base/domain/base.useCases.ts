@@ -8,7 +8,11 @@ import {
 	UpdateRequest,
 } from './base.requests';
 
-import { ResponseFailure, ResponseSuccess, ResponseTypes } from '@/base/domain/response';
+import {
+	ResponseFailure,
+	ResponseSuccess,
+	ResponseTypes,
+} from '@/base/domain/response';
 /**
  * Provides basic CRUD functionality for a repository of items of type T.
  * @typeParam T - An item type with an id field.
@@ -24,8 +28,8 @@ export class BaseUseCase<
 	 * @param itemName The name of the items in the repository (e.g. 'user').
 	 */
 	constructor(
-		protected readonly baseRepository: TRepository,
-		protected itemName: string
+		public readonly baseRepository: TRepository,
+		public itemName: string
 	) {}
 
 	/**
