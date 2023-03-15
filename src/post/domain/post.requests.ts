@@ -74,7 +74,7 @@ export class PostRequest extends BaseRequest<PostEntity> {
 	/**
 	 * Validates if a slug meets the requirements to get the post's content
 	 * @param slug - Slug of the post's content to get
-	 * @returns If the id meets the requirements, returns a `GetPostContentBySlug` object, else returns an `InvalidRequest` object
+	 * @returns If the id meets Uthe requirements, returns a `GetPostContentBySlug` object, else returns an `InvalidRequest` object
 	 */
 	getPostContentBySlug(slug: string): GetPostContentBySlug | InvalidRequest {
 		const invalidRequest = new InvalidRequest();
