@@ -69,7 +69,7 @@ export class PostRequest extends BaseRequest<PostEntity> {
 			return invalidRequest;
 		}
 
-		return new CreateRequest(item);
+		return new UpdateRequest(item);
 	}
 	/**
 	 * Validates if a slug meets the requirements to get the post's content
