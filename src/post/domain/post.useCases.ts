@@ -102,7 +102,7 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 				slug: post.slug,
 			});
 
-			return new ResponseSuccess(ResponseTypes.CREATED, postUpdated);
+			return new ResponseSuccess(ResponseTypes.OK, postUpdated);
 		} catch (error) {
 			return new ResponseFailure(
 				ResponseTypes.SYSTEM_ERROR,
