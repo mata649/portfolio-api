@@ -130,7 +130,7 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 			if (!postFound) {
 				return new ResponseFailure(
 					ResponseTypes.RESOURCE_ERROR,
-					'post does not exists'
+					'post does not exist'
 				);
 			}
 
