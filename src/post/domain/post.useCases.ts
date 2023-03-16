@@ -139,7 +139,7 @@ export class PostUseCase extends BaseUseCase<PostEntity, PostRepository> {
 					filters: { idPost: postFound.id },
 				})
 			);
-			if (!postContentsFound || postContentsFound.data.length < 0) {
+			if (!postContentsFound || postContentsFound.data.length === 0) {
 				return new ResponseFailure(
 					ResponseTypes.RESOURCE_ERROR,
 					'content does not exists'
