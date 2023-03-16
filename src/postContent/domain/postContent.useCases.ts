@@ -153,7 +153,7 @@ export class PostContentUseCase extends BaseUseCase<
 			);
 
 			return new ResponseSuccess(
-				ResponseTypes.CREATED,
+				ResponseTypes.OK,
 				postContentUpdated
 			);
 		} catch (error) {
