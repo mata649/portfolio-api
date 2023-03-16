@@ -39,7 +39,7 @@ export class PostContentUseCase extends BaseUseCase<
 	 * @param postContent The postContent object to check.
 	 * @returns A boolean indicating whether the language of the given postContent object has already been written.
 	 */
-	private async theLanguageIsAlreadyWritten(
+	 async theLanguageIsAlreadyWritten(
 		postContent: PostContentEntity
 	): Promise<boolean> {
 		const postsContentFound = await this.baseRepository.get(
