@@ -21,8 +21,8 @@ export class PostContentRequest extends BaseRequest<PostContentEntity> {
 		]);
 		if (item.language === Languages.NONE) {
 			invalidRequest.addError({
-				error: 'language',
-				parameter: 'language empty',
+				error: 'language empty',
+				parameter: 'language',
 			});
 		} else if (!allowedLanguages.includes(item.language)) {
 			invalidRequest.addError({
