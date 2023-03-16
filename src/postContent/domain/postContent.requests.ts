@@ -26,8 +26,8 @@ export class PostContentRequest extends BaseRequest<PostContentEntity> {
 			});
 		} else if (!allowedLanguages.includes(item.language)) {
 			invalidRequest.addError({
-				error: 'language',
-				parameter: `language is not accepted, language must to be ${allowedLanguages.join(
+				parameter: 'language',
+				error: `language is not accepted, language must to be ${allowedLanguages.join(
 					', '
 				)}`,
 			});
