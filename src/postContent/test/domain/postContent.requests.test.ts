@@ -10,7 +10,7 @@ import {
 	PostContentRequest,
 } from '@/postContent/domain';
 
-describe('PostContent', () => {
+describe('PostContentRequest', () => {
 	let postContentRequest: PostContentRequest;
 
 	beforeEach(() => {
