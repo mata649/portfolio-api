@@ -70,6 +70,6 @@ export class ProjectRequest extends BaseRequest<ProjectEntity> {
 			return invalidRequest;
 		}
 
-		return new CreateRequest(item);
+		return new UpdateRequest(item);
 	};
 }
