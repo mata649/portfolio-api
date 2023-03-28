@@ -29,7 +29,7 @@ export class UserRequest {
 	create = (user: UserEntity): CreateRequest<UserEntity> | InvalidRequest => {
 		const invalidRequest = new InvalidRequest();
 		if (user.name.length < 4) {
-			invalidRequest.addError({ error: 'name empty', parameter: 'name' });
+			invalidRequest.addError({ error: 'name is less than 4 characters', parameter: 'name' });
 		}
 
 		if (user.password.length < 8) {
