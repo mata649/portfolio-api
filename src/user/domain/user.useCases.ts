@@ -54,12 +54,12 @@ export class UserUseCase {
 			return new ResponseSuccess(ResponseTypes.CREATED, {
 				email: userCreated.email,
 				id: userCreated.id,
-				name: userCreated.email,
+				name: userCreated.name,
 			});
 		} catch (error) {
 			return new ResponseFailure(
 				ResponseTypes.SYSTEM_ERROR,
-				'server error'
+				'system error'
 			);
 		}
 	}
@@ -97,7 +97,7 @@ export class UserUseCase {
 			return new ResponseSuccess(ResponseTypes.OK, {
 				email: userFound.email,
 				id: userFound.id,
-				name: userFound.email,
+				name: userFound.name,
 			});
 		} catch (error) {
 			return new ResponseFailure(
