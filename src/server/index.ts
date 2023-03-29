@@ -23,6 +23,6 @@ app.use('/categories', categoryRouter);
 app.use('/projects', projectRouter);
 app.use('/posts', postRouter);
 app.use('/postsContent', postContentRouter);
-app.listen(config.PORT, () => {
-	console.log(`Server running on port ${config.PORT}`);
+app.listen(parseInt(config.PORT), config.HOST, () => {
+	console.log(`Server running on port: ${config.PORT}, host: ${config.HOST} `);
 });
