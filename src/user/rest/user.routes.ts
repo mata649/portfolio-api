@@ -9,7 +9,8 @@ const router = Router();
 const userRepository = new UserMongoRepository();
 const userCtrl = new UserController(userRepository);
 
-router.post('/', userCtrl.create);
+// TODO: find some way to handle this better
+// router.post('/', userCtrl.create)
 
 router.post('/auth', userCtrl.login);
 export { router as userRouter };
