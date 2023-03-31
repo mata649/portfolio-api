@@ -12,7 +12,6 @@ const userCtrl = new UserController(userRepository);
 
 // TODO: find some way to handle this better
 // router.post('/', userCtrl.create)
-
 router.post('/auth', userCtrl.login);
 router.get('/validate', validateToken, async (_req: Request, res: Response) => {
 	res.status(200).json({
