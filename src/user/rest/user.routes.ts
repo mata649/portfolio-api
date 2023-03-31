@@ -14,7 +14,7 @@ const userCtrl = new UserController(userRepository);
 // router.post('/', userCtrl.create)
 
 router.post('/auth', userCtrl.login);
-router.post('/validate', validateToken, async (_req: Request, res: Response) => {
+router.get('/validate', validateToken, async (_req: Request, res: Response) => {
 	res.status(200).json({
 		message: 'user validated',
 	});
