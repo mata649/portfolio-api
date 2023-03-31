@@ -78,7 +78,7 @@ export class BaseController<
 	get = async (req: Request, res: Response) => {
 		const filters = this.createItemEntity(req.query as Partial<T>);
 		const limit = parseInt(req.query.limit as string);
-		const page = parseInt(req.query.page as string);
+		const page = parseInt(req.query.currentPage as string);
 		const orderBy = req.query.orderBy as string;
 
 		const requestObject = this.baseRequest.get(
