@@ -1,4 +1,5 @@
-import { Router } from 'express';
+import { validateToken } from '@/server/middlewares/validateToken';
+import { Response,Request, Router } from 'express';
 import { UserMongoRepository } from '../data/mongo/user.repository';
 import { UserController } from './user.controller';
 
@@ -13,4 +14,9 @@ const userCtrl = new UserController(userRepository);
 // router.post('/', userCtrl.create)
 
 router.post('/auth', userCtrl.login);
+router.post('/validate', validateToken, async (_req: Request, res: Response) => {
+	res.status(200).json({
+		message: 'user validated',
+	});
+});
 export { router as userRouter };
